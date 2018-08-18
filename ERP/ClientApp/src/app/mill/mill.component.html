@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th style="display:none"></th>
+        <th>Province</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Manager Name</th>
+        <th>Manager Cell No.</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of millsData">
+        <td style="display:none">{{m.id}}</td>
+        <td>{{m.provinceName}}</td>
+        <td>{{m.name}}</td>
+        <td>{{m.cityName}}</td>
+        <td>{{m.managerName}}</td>
+        <td>{{m.managerCell}}</td>
+
+        <td class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">menu</i>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li><a href="#" class="waves-effect waves-block edit-mill" (click)="EditMill(m.id)" data-mill-id="@item.Id" data-toggle="modal" data-target="#MillEditModal"><i class="material-icons">Edit</i></a></li>
+            <li><a href="#" class="waves-effect waves-block delete-mill" data-mill-id="@item.Id" data-mill-name="@item.Amount"><i class="material-icons">Delete</i></a></li>
+          </ul>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" data-target="#MillCreateModal">
+    <i class="material-icons">add</i>
+  </button>
+
+
+
+
+  <div class="modal fade" id="MillCreateModal" tabindex="-1" role="dialog" aria-labelledby="MillCreateModalLabel" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <span>Create New Mill</span>
+
+
+          </h4>
+        </div>
+        <div class="modal-body">
+
+          <!--<div class="row custom-row">-->
+          <!--<div class="col-sm-6 custom-container jumbotron">-->
+          <form class="form-horizontal" novalidate (ngSubmit)="onFormSubmit(millForm)" #millForm="ngForm">
+
+            <!--<fieldset>-->
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="inputCity">Name</label>
+                  <input type="text"
+                         [(ngModel)]="mill.Name"
+                         #Name="ngModel"
+                         id="inputName"
+                         name="Name"
+                         required
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="select">Province</label>
+                  <select id="select" [ngModel]="mill.ProvinceId" name="ProvinceId" class="form-control" (ngModelChange)="onProvinceChange($event)">
+
+                    <option *ngFor="let p of provinceData"
+                            [value]="p.id">
+                      {{p.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="select">City</label>
+                  <select id="select" [ngModel]="mill.CityId" name="CityId" class="form-control">
+
+                    <option *ngFor="let c of cities"
+                            [value]="c.id">
+                      {{c.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!--<div class="col-sm-12">
+                <div class="form-group form-float">
+                    <div class="form-line">
+                        <label for="inputFabricId">Product</label>
+                        <input type="text"
+                               [(ngModel)]="mill.FabricId"
+                               #FabricId="ngModel"
+                               id="inputFabricId"
+                               name="FabricId"
+                               required
+                               class="form-control">
+                    </div>
+                </div>
+            </div>-->
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="select">Product</label>
+                  <select id="select" [ngModel]="mill.FabricId" name="FabricId" class="form-control">
+
+                    <option *ngFor="let p of products"
+                            [value]="p.id">
+                      {{p.abbreviation}}
+                    </option>
+
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="inputManagerName">Manager Name</label>
+                  <input type="text"
+                         [(ngModel)]="mill.ManagerName"
+                         #ManagerName="ngModel"
+                         id="inputManagerName"
+                         name="ManagerName"
+                         required
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="inputManagerCell">Manager Cell No.</label>
+                  <input type="text"
+                         [(ngModel)]="mill.ManagerCell"
+                         #ManagerCell="ngModel"
+                         id="inputManagerCell"
+                         name="ManagerCell"
+                         required
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" #closeBtn>Cancel</button>
+              <button type="submit" class="btn btn-primary waves-effect">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="MillEditModal" tabindex="-1" role="dialog" aria-labelledby="MillEditModalLabel" data-backdrop="static" *ngIf="showEditModel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            <span>Edit Mill Details</span>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" novalidate (ngSubmit)="onFormUpdateSubmit(millUpdateForm)" #millUpdateForm="ngForm">
+            <!--<fieldset>-->
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="inputCity">Name</label>
+                  <input type="text"
+                         [(ngModel)]="editProvinceDate.name"
+                         #Name="ngModel"
+                         id="inputName"
+                         name="Name"
+                         required
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <input type="hidden"
+                         [(ngModel)]="editProvinceDate.id"
+                         #Id="ngModel"
+                         id="inputId"
+                         name="Id"
+                         required
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="province">Province</label>
+                  <select id="select" [(ngModel)]="editProvinceDate.province" name="province" class="form-control" (ngModelChange)="onProvinceChange($event)">
+
+                    <option *ngFor="let p of provinceData"
+                            [ngValue]="p.id" [selected]="p.id == editProvinceDate.provinceId">
+                      {{p.name}}
+                    </option>
+
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="select">City</label>
+                  <select id="select" [ngModel]="editProvinceDate.City" name="City" class="form-control">
+
+                    <option *ngFor="let c of cities"
+                            [value]="c.id">
+                      {{c.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="inputManagerName">Manager Name</label>
+                  <input type="text"
+                         [(ngModel)]="editProvinceDate.managerName"
+                         #managerName="ngModel"
+                         id="inputManagerName"
+                         name="managerName"
+                         required
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <label for="inputManagerCell">Manager Cell No.</label>
+                  <input type="text"
+                         [(ngModel)]="editProvinceDate.managerCell"
+                         #managerCell="ngModel"
+                         id="inputManagerCell"
+                         name="managerCell"
+                         required
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" #closeBtn>Cancel</button>
+              <button type="submit" class="btn btn-primary waves-effect">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

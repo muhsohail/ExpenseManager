@@ -1,6 +1,4 @@
-﻿using ERP.Domain.Models;
-
-namespace ERP.Domain.Models
+﻿namespace ERP.Domain.Models
 {
     public class MillFabric
     {

@@ -9,7 +9,7 @@ namespace ERP.Domain.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-
+        //a
         
         [ForeignKey("Province")]
         public int ProvinceId { get; set; }

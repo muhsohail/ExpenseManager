@@ -1,0 +1,120 @@
+<p>
+  expense-registeration works fine!
+
+  <form class="form-horizontal" novalidate (ngSubmit)="onFormSubmit(expenseRegisteration)" #expenseRegisteration="ngForm">
+
+    <!--<fieldset>-->
+
+    <div class="col-sm-12">
+      <div class="form-group form-float">
+        <div class="form-line">
+          <label for="inputCity">Name</label>
+          <input type="text"
+                 [(ngModel)]="mill.Name"
+                 #Name="ngModel"
+                 id="inputName"
+                 name="Name"
+                 required
+                 class="form-control">jlhgkjhgkhgdkjhgh
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="form-group form-float">
+        <div class="form-line">
+          <label for="select">Province</label>
+          <select id="select" [ngModel]="mill.ProvinceId" name="ProvinceId" class="form-control" (ngModelChange)="onProvinceChange($event)">
+
+            <option *ngFor="let p of provinceData"
+                    [value]="p.id">
+              {{p.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="form-group form-float">
+        <div class="form-line">
+          <label for="select">City</label>
+          <select id="select" [ngModel]="mill.CityId" name="CityId" class="form-control">
+
+            <option *ngFor="let c of cities"
+                    [value]="c.id">
+              {{c.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="col-sm-12">
+        <div class="form-group form-float">
+            <div class="form-line">
+                <label for="inputFabricId">Product</label>
+                <input type="text"
+                       [(ngModel)]="mill.FabricId"
+                       #FabricId="ngModel"
+                       id="inputFabricId"
+                       name="FabricId"
+                       required
+                       class="form-control">
+            </div>
+        </div>
+    </div>-->
+
+    <div class="col-sm-12">
+      <div class="form-group form-float">
+        <div class="form-line">
+          <label for="select">Product</label>
+          <select id="select" [ngModel]="mill.FabricId" name="FabricId" class="form-control">
+
+            <option *ngFor="let p of products"
+                    [value]="p.id">
+              {{p.abbreviation}}
+            </option>
+
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-12">
+      <div class="form-group form-float">
+        <div class="form-line">
+          <label for="inputManagerName">Manager Name</label>
+          <input type="text"
+                 [(ngModel)]="mill.ManagerName"
+                 #ManagerName="ngModel"
+                 id="inputManagerName"
+                 name="ManagerName"
+                 required
+                 class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12">dhgdjfgf 
+      <div class="form-group form-float">
+        <div class="form-line">
+          <label for="inputManagerCell">Manager Cell No.</label>
+          <input type="text"
+                 [(ngModel)]="mill.ManagerCell"
+                 #ManagerCell="ngModel"
+                 id="inputManagerCell"
+                 name="ManagerCell"
+                 required
+                 class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" #closeBtn>Cancel</button>
+      <button type="submit" class="btn btn-primary waves-effect">Save</button>
+    </div>
+  </form>
+</p>

@@ -12,10 +12,11 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule, MatPaginatorModule, MatSortModule, MatDialogModule } from '@angular/material';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { MillComponent } from './mill/mill.component';
+import { ExpenseRegisterationComponent } from './expense-registeration/expense-registeration.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MillComponent } from './mill/mill.component';
     MyNavComponent,
     MyDashboardComponent,
     MyTableComponent,
-    MillComponent
+    MillComponent,
+    ExpenseRegisterationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,9 +54,11 @@ import { MillComponent } from './mill/mill.component';
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ExpenseRegisterationComponent]
 })
 export class AppModule { }

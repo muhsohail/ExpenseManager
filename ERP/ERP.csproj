@@ -25,6 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\expense-registeration\expense.service.ts" />
+    <None Remove="ClientApp\src\app\fetch-data\expense.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\e2e\app\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -32,6 +37,11 @@
   <ItemGroup>
     <ProjectReference Include="..\ERP.EntityFramework\ERP.EntityFramework.csproj" />
     <ProjectReference Include="..\ERP.Services\ERP.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\expense-registeration\expense.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\fetch-data\expense.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

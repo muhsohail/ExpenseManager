@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.EntityFramework", "ERP.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Models", "ERP.Models\ERP.Models.csproj", "{6C56CEE3-4B3D-4CFC-B458-ABBEFA5C2A3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Services", "ERP.Services\ERP.Services.csproj", "{6B61620E-2AA3-4334-9E21-4CA7F1230984}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Services", "ERP.Services\ERP.Services.csproj", "{6B61620E-2AA3-4334-9E21-4CA7F1230984}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

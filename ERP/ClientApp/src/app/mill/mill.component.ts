@@ -23,14 +23,13 @@ export class MillComponent implements OnInit {
   private province: string[];
 
   public getProvinces() {
-    debugger
     this.millService.getProvinces().subscribe((data: Array<Province>) => {
       this.provinceData = data;
     });
   }
 
   public getMills() {
-    debugger
+    
     this.millService.getMills().subscribe((data: Array<mill>) => {
       this.millsData = data;
     });

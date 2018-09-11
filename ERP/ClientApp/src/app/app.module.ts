@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -56,6 +56,22 @@ import { MillComponent } from './mill/mill.component';
 import { ExpenseRegisterationComponent } from './expense-registeration/expense-registeration.component';
 import { EditExpenseRegisterationComponent } from './edit-expense-registeration/edit-expense-registeration.component';
 import { DeleteExpenseRegisterationComponent } from './delete-expense-registeration/delete-expense-registeration.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
+
+
+import { fakeBackendProvider } from '././helpers/fake-backend';
+import { AlertComponent } from './directives/alert.component';
+import { AuthGuard } from './guard/auth.guard';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+
+import { AlertService } from './services/alert.service';
+import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
+
+//import { HomeComponent } from './home';/
 
 @NgModule({
   declarations: [
@@ -70,18 +86,24 @@ import { DeleteExpenseRegisterationComponent } from './delete-expense-registerat
     MillComponent,
     ExpenseRegisterationComponent,
     EditExpenseRegisterationComponent,
-    DeleteExpenseRegisterationComponent
+    DeleteExpenseRegisterationComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      //{ path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent, canActivate: [AuthGuard]},
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard]},
       { path: 'my-dashboard', component: MyDashboardComponent },
       { path: 'mill', component: MillComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+
     ]),
     BrowserAnimationsModule,
     LayoutModule,
@@ -102,7 +124,17 @@ import { DeleteExpenseRegisterationComponent } from './delete-expense-registerat
     MatSelectModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AlertService,
+    AuthenticationService,
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ExpenseRegisterationComponent, EditExpenseRegisterationComponent, DeleteExpenseRegisterationComponent]
 })

@@ -6,8 +6,8 @@ import { MatDialog, MatDialogConfig } from "@angular/material";
 import { ExpenseRegisterationComponent } from '../expense-registeration/expense-registeration.component';
 import { EditExpenseRegisterationComponent } from '../edit-expense-registeration/edit-expense-registeration.component';
 import { DeleteExpenseRegisterationComponent } from '../delete-expense-registeration/delete-expense-registeration.component';
-
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+
 export interface UserData {
   id: string;
   name: string;
@@ -23,7 +23,8 @@ export class FetchDataComponent {
   expenseList: expense[];
   uri = 'http://localhost:4000/expense';
 
-  constructor(private http: HttpClient, private expenseservice: ExpenseService, private dialog: MatDialog) {
+  constructor(private http: HttpClient, private expenseservice: ExpenseService, private dialog: MatDialog)
+  {
 
   }
   openDialog() {

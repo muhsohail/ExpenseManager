@@ -37,7 +37,7 @@ export class ExpenseService {
 
     const obj = {
       amount: amount,
-      datespent: datespent,
+      dateSpent: datespent,
       purpose: purpose,
       category: category,
       id: id

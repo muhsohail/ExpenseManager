@@ -14,7 +14,7 @@
 
       <div class="form-group">
         <label class="col-md-4">Date Spent</label>
-        <input type="text" class="form-control" name="datespent" formControlName="datespent" #datespent [(ngModel)]="expenseList.dateSpent"/>
+        <input type="text" class="form-control" name="datespent" formControlName="datespent" #datespent [(ngModel)]="expenseList.dateSpentString"/>
       </div>
       <div *ngIf="angForm.controls['datespent'].invalid && (angForm.controls['datespent'].dirty || angForm.controls['datespent'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['datespent'].errors.required">

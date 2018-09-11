@@ -11,7 +11,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./edit-expense-registeration.component.css']
 })
 export class EditExpenseRegisterationComponent implements OnInit {
-  expenseList: any = {};
+  expenseList: expense;
   angForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
@@ -37,13 +37,13 @@ export class EditExpenseRegisterationComponent implements OnInit {
       this.dialogRef.close();
     });
   }
-  
+
   ngOnInit() {
-  
-      this.expenseService.editExpense(this.data.id).subscribe(res => {
-        this.expenseList = res;
-      });
-    
+    this.expenseService.editExpense(this.data.id).subscribe((res: expense) => {
+      this.expenseList = res;
+
+      this.expenseList.dateSpentString = new Date(this.expenseList.dateSpent).toLocaleDateString();
+    });
   }
 }
 

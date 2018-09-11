@@ -25,8 +25,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\directives\alert.component.ts" />
     <None Remove="ClientApp\src\app\expense-registeration\expense.service.ts" />
     <None Remove="ClientApp\src\app\fetch-data\expense.ts" />
+    <None Remove="ClientApp\src\app\guard\auth.guard.ts" />
+    <None Remove="ClientApp\src\app\helpers\error.interceptor.ts" />
+    <None Remove="ClientApp\src\app\helpers\fake-backend.ts" />
+    <None Remove="ClientApp\src\app\helpers\jwt.interceptor.ts" />
+    <None Remove="ClientApp\src\app\models\user.ts" />
+    <None Remove="ClientApp\src\app\services\alert.service.ts" />
+    <None Remove="ClientApp\src\app\services\authentication.service.ts" />
+    <None Remove="ClientApp\src\app\services\user.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,8 +49,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\directives\alert.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\expense-registeration\expense.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\fetch-data\expense.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\guard\auth.guard.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\helpers\error.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\helpers\fake-backend.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\helpers\jwt.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\user.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\alert.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\authentication.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\user.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

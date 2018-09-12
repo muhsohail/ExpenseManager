@@ -7,6 +7,8 @@ import { ExpenseRegisterationComponent } from '../expense-registeration/expense-
 import { EditExpenseRegisterationComponent } from '../edit-expense-registeration/edit-expense-registeration.component';
 import { DeleteExpenseRegisterationComponent } from '../delete-expense-registeration/delete-expense-registeration.component';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { User } from '../models/user';
+
 
 export interface UserData {
   id: string;
@@ -21,6 +23,9 @@ export interface UserData {
 })
 export class FetchDataComponent {
   expenseList: expense[];
+  loggedInUser: any;
+  currentRole: any;
+  btnDeleteShow: boolean = true;
   uri = 'http://localhost:4000/expense';
 
   constructor(private http: HttpClient, private expenseservice: ExpenseService, private dialog: MatDialog)
@@ -86,8 +91,23 @@ export class FetchDataComponent {
     });
   }
 
+  getCurrentLoggedInUser() {
+    debugger
+    if (localStorage.getItem('currentUser')) {
 
+      this.loggedInUser =  localStorage.getItem('currentUser');
+      console.log(this.loggedInUser);
+
+      if (JSON.parse(this.loggedInUser).role == "1") {
+        this.btnDeleteShow = false;
+      }
+
+    }
+
+    
+  }
   ngOnInit() {
+    this.getCurrentLoggedInUser();
     this.expenseservice
       .getExpenses()
       .subscribe((data: expense[]) => {

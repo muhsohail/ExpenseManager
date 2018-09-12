@@ -19,13 +19,13 @@
       <!--<td><a [routerLink]="['/edit', expense._id]" class="btn btn-primary">Edit</a></td>
       <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>-->
 
-      <td><a class="btn btn-primary" data-toggle="modal" (click)="editDialog(expense._id)">Edit</a></td>
-      <td><a class="btn btn-danger" data-toggle="modal" (click)="deleteDialog(expense._id)">Delete</a></td>
+      <td [hidden]="!btnDeleteShow"><a class="btn btn-primary" data-toggle="modal" (click)="editDialog(expense._id)">Edit</a></td>
+      <td  [hidden]="!btnDeleteShow"><a class="btn btn-danger" data-toggle="modal" (click)="deleteDialog(expense._id)">Delete</a></td>
 
     </tr>
   </tbody>
 </table>
-<button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openDialog()">
+<button *ngIf="btnDeleteShow" type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openDialog()">
   <i class="material-icons">add</i>
 </button>
 

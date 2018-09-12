@@ -15,6 +15,9 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
+
+  roles = [{ 'id': 1, 'name': 'Admin' }, { 'id': 2, 'name': 'Editor' }, { 'id': 3, 'name': 'Viewer' }];
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -27,7 +30,8 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role: ''
     });
 
   }

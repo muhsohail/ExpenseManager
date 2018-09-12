@@ -20,6 +20,9 @@ let User = new Schema(
         password: {
             type: String
         },
+        role: {
+            type: String
+        }
     },
     {
         collection: 'users'

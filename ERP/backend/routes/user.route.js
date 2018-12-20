@@ -19,7 +19,7 @@ UserRoutes.route('/register').post(function (req, res) {
 });
 
 UserRoutes.route('/authenticate').post(function (req, res) {
-    debugger
+    
     console.log("Inside auth");
     User.findOne({ username: req.body.username}, function (err, user) {
         if (!user) { 
@@ -62,12 +62,12 @@ UserRoutes.route('/authenticate').post(function (req, res) {
 
 // Defined get data(index or listing) route
 UserRoutes.route('/').get(function (req, res) {
-    User.find(function (err, Expenses) {
+    User.find(function (err, User) {
         if (err) {
             console.log(err);
         }
         else {
-            res.json(Expenses);
+            res.json(User);
         }
     });
 });
@@ -108,8 +108,9 @@ UserRoutes.route('/delete/:id').post(function (req, res) {
             console.log(err);
             res.json(err);
         }
-        else res.json('Successfully removed');
+        else res.json('User has been successfully removed from the system.');
     });
 });
+
 
 module.exports = UserRoutes;

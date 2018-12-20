@@ -12,8 +12,19 @@ import { expense } from '../fetch-data/expense';
 
 export class ExpenseRegisterationComponent implements OnInit {
   expenseList: expense[];
-
   angForm: FormGroup;
+
+  StartTime: Date;
+  EndTime: Date;
+  diff: any;
+  seconds: any;
+
+  // TODO - Move to database
+  Categories = [
+    { 'id': 1, 'name': 'Category 1' },
+    { 'id': 2, 'name': 'Category 2' },
+    { 'id': 3, 'name': 'Category 2' }
+  ];
 
   constructor(private expenseService: ExpenseService, private fb: FormBuilder, public dialogRef: MatDialogRef<ExpenseRegisterationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
@@ -29,9 +40,32 @@ export class ExpenseRegisterationComponent implements OnInit {
     });
   }
 
-  addExpense(amount, datespent, purpose, category) {
-    this.expenseService.addExpense(amount, datespent, purpose, category);
+  cancelAddExpense() {
+
     this.dialogRef.close();
+
+  }
+  addExpense(amount, datespent, purpose, category) {
+
+    //this.StartTime = new Date();
+
+    //this.expenseService.addExpense(amount, datespent, purpose, category);
+    //this.dialogRef.close();
+
+    //this.EndTime = new Date();
+    //this.diff = this.EndTime.getTime() - this.StartTime.getTime();
+    //this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
+
+    //console.log("Add expense call time in milisecond: " + this.diff);
+    //console.log("Add expense call time in seconds: " + this.seconds);
+
+    // for loop
+    for (var i = 0; i < 500; i++) {
+      this.expenseService.addExpense(amount, datespent, purpose, category);
+    }
+
+    this.dialogRef.close();
+
   }
 
   ngOnInit() {

@@ -14,6 +14,12 @@ export class EditExpenseRegisterationComponent implements OnInit {
   expenseList: expense;
   angForm: FormGroup;
 
+  StartTime: Date;
+  EndTime: Date;
+  diff: any;
+  seconds: any;
+
+
   constructor(private route: ActivatedRoute,
     private router: Router,
     private expenseService: ExpenseService,
@@ -32,17 +38,44 @@ export class EditExpenseRegisterationComponent implements OnInit {
   }
 
   updateExpense(amount, dataspent, purpose, category, id) {
+    this.StartTime = new Date();
+
     this.route.params.subscribe(params => {
       this.expenseService.updateExpense(amount, dataspent, purpose, category, id);
       this.dialogRef.close();
+
+
     });
+
+    this.EndTime = new Date();
+    this.diff = this.EndTime.getTime() - this.StartTime.getTime();
+    this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
+
+    console.log("Update expense call time in milisecond: " + this.diff);
+    console.log("Update expense call time in seconds: " + this.seconds);
+
   }
 
+  cancelEditExpense() {
+
+    this.dialogRef.close();
+  }
   ngOnInit() {
+    this.StartTime = new Date();
+
     this.expenseService.editExpense(this.data.id).subscribe((res: expense) => {
       this.expenseList = res;
 
       this.expenseList.dateSpentString = new Date(this.expenseList.dateSpent).toLocaleDateString();
+
+      this.EndTime = new Date();
+      this.diff = this.EndTime.getTime() - this.StartTime.getTime();
+      this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
+
+      console.log("Edit expense call time in milisecond: " + this.diff);
+      console.log("Edit expense call time in seconds: " + this.seconds);
+
+
     });
   }
 }

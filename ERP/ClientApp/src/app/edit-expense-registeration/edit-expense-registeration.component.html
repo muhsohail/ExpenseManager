@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-body">
     <form [formGroup]="angForm" novalidate>
-      
+      <h3>Edit Expense Entry</h3>
       <div class="form-group">
-        <label class="col-md-4">Amount</label>
+        <label>Amount</label>
         <input type="text" class="form-control" name="amount" formControlName="amount" #amount [(ngModel)]="expenseList.amount" />
       </div>
       <div *ngIf="angForm.controls['amount'].invalid && (angForm.controls['amount'].dirty || angForm.controls['amount'].touched)" class="alert alert-danger">
@@ -13,7 +13,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-4">Date Spent</label>
+        <label>Date Spent</label>
         <input type="text" class="form-control" name="datespent" formControlName="datespent" #datespent [(ngModel)]="expenseList.dateSpentString"/>
       </div>
       <div *ngIf="angForm.controls['datespent'].invalid && (angForm.controls['datespent'].dirty || angForm.controls['datespent'].touched)" class="alert alert-danger">
@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-4">Purpose</label>
+        <label>Purpose</label>
         <input type="text" class="form-control" name="purpose" formControlName="purpose" #purpose [(ngModel)]="expenseList.purpose"/>
       </div>
       <div *ngIf="angForm.controls['purpose'].invalid && (angForm.controls['purpose'].dirty || angForm.controls['purpose'].touched)" class="alert alert-danger">
@@ -34,7 +34,7 @@
 
 
       <div class="form-group">
-        <label class="col-md-4">Category</label>
+        <label>Category</label>
         <input type="text" class="form-control" name="category" formControlName="category" #category [(ngModel)]="expenseList.category"/>
       </div>
       <div *ngIf="angForm.controls['category'].invalid && (angForm.controls['category'].dirty || angForm.controls['category'].touched)" class="alert alert-danger">
@@ -43,8 +43,9 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="btn-toolbar">
         <button (click)="updateExpense(amount.value, datespent.value, purpose.value, category.value, expenseList._id)" [disabled]="angForm.invalid" class="btn btn-primary">Update</button>
+        <button (click)="cancelEditExpense()" [disabled]="angForm.invalid" class="btn btn-primary">Cancel</button>
       </div>
     </form>
   </div>

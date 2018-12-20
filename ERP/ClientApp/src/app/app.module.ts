@@ -59,8 +59,6 @@ import { DeleteExpenseRegisterationComponent } from './delete-expense-registerat
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
-
-
 import { fakeBackendProvider } from '././helpers/fake-backend';
 import { AlertComponent } from './directives/alert.component';
 import { AuthGuard } from './guard/auth.guard';
@@ -70,6 +68,9 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
+import { UsersComponent } from './users/users.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
+import { BulkDeleteComponent } from './bulk-delete/bulk-delete.component';
 
 //import { HomeComponent } from './home';/
 
@@ -88,7 +89,10 @@ import { UserService } from './services/user.service';
     EditExpenseRegisterationComponent,
     DeleteExpenseRegisterationComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UsersComponent,
+    DeleteUserComponent,
+    BulkDeleteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -103,6 +107,7 @@ import { UserService } from './services/user.service';
       { path: 'mill', component: MillComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'users', component: UsersComponent },
 
     ]),
     BrowserAnimationsModule,
@@ -136,6 +141,6 @@ import { UserService } from './services/user.service';
     fakeBackendProvider
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ExpenseRegisterationComponent, EditExpenseRegisterationComponent, DeleteExpenseRegisterationComponent]
+  entryComponents: [ExpenseRegisterationComponent, EditExpenseRegisterationComponent, DeleteExpenseRegisterationComponent, DeleteUserComponent, BulkDeleteComponent]
 })
 export class AppModule { }

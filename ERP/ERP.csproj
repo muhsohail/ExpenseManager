@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\e2e\app\" />
+    <Folder Include="ClientApp\src\Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

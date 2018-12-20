@@ -1,10 +1,8 @@
-﻿// adexpense.route.js
-
-const express = require('express');
+﻿const express = require('express');
 const app = express();
 const ExpenseRoutes = express.Router();
 
-// Require AdExpense model in our routes module
+// Require Expense model in our routes module
 let Expense = require('../models/Expense');
 
 // Defined store route
@@ -36,7 +34,6 @@ ExpenseRoutes.route('/edit/:id').get(function (req, res) {
         res.json(expense);
     });
 });
-
 //  Defined update route
 ExpenseRoutes.route('/update/:id').post(function (req, res) {
     Expense.findById(req.params.id, function (err, expense) {
@@ -57,7 +54,6 @@ ExpenseRoutes.route('/update/:id').post(function (req, res) {
         }
     });
 });
-
 // Delete
 ExpenseRoutes.route('/delete/:id').post(function (req, res) {
     console.log('Called');
@@ -70,5 +66,41 @@ ExpenseRoutes.route('/delete/:id').post(function (req, res) {
     });
 });
 
+ExpenseRoutes.route('/bulkdelete/:itemsCount').get(function (req, res) {
+    console.log("bulkdelete called ");
+    console.log(req.params.itemsCount);
+
+    let itemCount = req.params.itemsCount;
+    var removeIdsArray;
+
+    Expense.find(query, fields, { skip: 10, limit: 5 }, function (err, results) {
+
+        return res.json(expenses);
+    });
+
+
+    //var query = Model.find({}).skip(2).limit(5)
+
+
+    //Expense.find()
+    //    .limit(itemCount)
+    //    .exec(function (err, expenses) {
+
+    //        //posts.map(function (doc) {
+    //        return res.json(expenses);
+    //        //});            
+    //    });
+
+
+    //Expense.findById(id, function (err, expense) {
+        
+    //});
+
+
+    //Expense.deleteMany({
+    //    _id: { $in: [removeIdsArray]}}, function (err, response) {
+    //    console.log("hi" + err + response);
+    //})
+});
 
 module.exports = ExpenseRoutes;

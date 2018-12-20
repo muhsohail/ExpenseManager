@@ -1,9 +1,11 @@
 <!-- create.component.html -->
 <div class="card">
   <div class="card-body">
+    <h3>Add Expense Entry</h3>
+    <hr />
     <form [formGroup]="angForm" novalidate>
       <div class="form-group">
-        <label class="col-md-4">Amount</label>
+        <label>Amount</label>
         <input type="text" class="form-control" name="amount" formControlName="amount" #amount />
       </div>
       <div *ngIf="angForm.controls['amount'].invalid && (angForm.controls['amount'].dirty || angForm.controls['amount'].touched)" class="alert alert-danger">
@@ -13,7 +15,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-4">Date Spent</label>
+        <label>Date Spent</label>
         <input type="text" class="form-control" name="datespent" formControlName="datespent" #datespent />
       </div>
       <div *ngIf="angForm.controls['datespent'].invalid && (angForm.controls['datespent'].dirty || angForm.controls['datespent'].touched)" class="alert alert-danger">
@@ -23,7 +25,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-4">Purpose</label>
+        <label>Purpose</label>
         <input type="text" class="form-control" name="purpose" formControlName="purpose" #purpose />
       </div>
       <div *ngIf="angForm.controls['purpose'].invalid && (angForm.controls['purpose'].dirty || angForm.controls['purpose'].touched)" class="alert alert-danger">
@@ -33,19 +35,32 @@
       </div>
 
 
-      <div class="form-group">
-        <label class="col-md-4">Category</label>
-        <input type="text" class="form-control" name="category" formControlName="category" #category />
+      <!--<div class="form-group">
+        <label for="contry">Category</label>
+        <select class="form-control" id="category" formControlName="category">
+          <option *ngFor="let category of Categories" [value]="category.name">{{category.name}}</option>
+        </select>
       </div>
       <div *ngIf="angForm.controls['category'].invalid && (angForm.controls['category'].dirty || angForm.controls['category'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['category'].errors.required">
           category is required.
         </div>
-      </div>
-
+      </div>-->  
 
       <div class="form-group">
+    <label>Category</label>
+    <input type="text" class="form-control" name="category" formControlName="category" #category />
+  </div>
+  <div *ngIf="angForm.controls['category'].invalid && (angForm.controls['category'].dirty || angForm.controls['category'].touched)" class="alert alert-danger">
+    <div *ngIf="angForm.controls['category'].errors.required">
+      category is required.
+    </div>
+  </div>
+
+
+      <div class="btn-toolbar">
         <button (click)="addExpense(amount.value, datespent.value, purpose.value, category.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Create</button>
+        <button (click)="cancelAddExpense()" class="btn btn-primary">Cancel</button>
       </div>
     </form>
   </div>

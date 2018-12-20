@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { User } from '../models/user';
 import { config } from 'process';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
+
   uri = 'http://localhost:4000/user';
   constructor(private http: HttpClient) { }
 
@@ -27,7 +28,14 @@ export class UserService {
     return this.http.put(`${this.uri}/update/` + user.id, user);
   }
 
-  delete(id: number) {
-    return this.http.delete(`${this.uri}/delete/` + id);
+  delete(id) {
+    const obj = {
+
+    };
+    //return this.http.post(`${this.uri}/delete/` + id);
+    return this
+      .http
+      .post(`${this.uri}/delete/${id}`, obj)
+      .subscribe(res => console.log('Done'));
   }
 }

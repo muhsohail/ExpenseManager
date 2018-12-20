@@ -1,3 +1,9 @@
+<!--<p> Page with records count <b>{{expensesCount}}</b> is loaded in milliseconds: <b>{{diff}}</b></p>-->
+<h2>Expense Enteries</h2>
+
+<!--<button *ngIf="btnAddShow" type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openBulkDeleteDialog()">
+  <i class="material-icons">clear</i>
+</button>-->
 <table class="table table-hover">
   <thead>
     <tr>
@@ -5,7 +11,7 @@
       <td>Date Spent</td>
       <td>Purpose</td>
       <td>Category</td>
-      <td colspan="2">Actions</td>
+      <td>Actions</td>
     </tr>
   </thead>
 
@@ -17,15 +23,33 @@
       <td>{{ expense.category }}</td>
 
       <!--<td><a [routerLink]="['/edit', expense._id]" class="btn btn-primary">Edit</a></td>
-      <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>-->
+  <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>-->
 
-      <td [hidden]="!btnDeleteShow"><a class="btn btn-primary" data-toggle="modal" (click)="editDialog(expense._id)">Edit</a></td>
-      <td  [hidden]="!btnDeleteShow"><a class="btn btn-danger" data-toggle="modal" (click)="deleteDialog(expense._id)">Delete</a></td>
+      <td [hidden]="!btnEditShow">
+        <a class="btn btn-primary" data-toggle="modal" (click)="editDialog(expense._id)">
+          <i class="material-icons md-6">edit</i>
+        </a>
+        <a class="btn btn-danger" data-toggle="modal" (click)="deleteDialog(expense._id)">
+          <i class="material-icons md-6">delete</i>
+        </a>
+      </td>
+      <td [hidden]="!btnDeleteShow"></td>
+
+      <!--TODO-->
+      <!--<td class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="dropdown-menu pull-right">
+          <li><a href="#" class="btn btn-primary" data-toggle="modal" (click)="editDialog(expense._id)"><i class="material-icons">edit</i>Edit</a></li>
+          <li><a href="#" class="btn btn-danger" data-toggle="modal" (click)="deleteDialog(expense._id)"><i class="material-icons">delete_sweep</i>Delete  </a></li>
+        </ul>
+      </td>-->
+
 
     </tr>
   </tbody>
 </table>
-<button *ngIf="btnDeleteShow" type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openDialog()">
-  <i class="material-icons">add</i>
+<button *ngIf="btnAddShow" type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openDialog()">
+  <!--<i class="material-icons">add</i>--> Add Expense Entry
 </button>
-

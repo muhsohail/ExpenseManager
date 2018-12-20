@@ -1,57 +1,63 @@
 <div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
-                <span class='sr-only'>Toggle navigation</span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>
-            <a class='navbar-brand' [routerLink]='["/"]'>ERP</a>
-        </div>
-        <div class='clearfix'></div>
-        <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-          <ul class='nav navbar-nav'>
-            <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-              <a [routerLink]='["/"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-home'></span> Home
-              </a>
-            </li>
-            <!--<li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/counter"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-education'></span> Charity
-              </a>
-            </li>-->
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Expense Details
-              </a>
-            </li>
-
-            <!--<li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/my-dashboard"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Dashboard
-              </a>
-            </li>
-
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/mill"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Mill
-              </a>
-            </li>-->
-
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/login"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Login
-              </a>
-            </li>
-
-            <li [routerLinkActive]='["link-active"]'>
-              <a [routerLink]='["/register"]' (click)='collapse()'>
-                <span class='glyphicon glyphicon-th-list'></span> Register
-              </a>
-            </li>
-          </ul>
-        </div>
+  <div class='navbar navbar-inverse'>
+    <div class='navbar-header'>
+      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
+      <a class='navbar-brand' [routerLink]='["/"]'>ERP</a>
     </div>
+    <div class='clearfix'></div>
+    <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
+      <ul class='nav navbar-nav'>
+        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+          <a [routerLink]='["/"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-home'></span> Home
+          </a>
+        </li>
+        <!--<li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/counter"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-education'></span> Charity
+          </a>
+        </li>-->
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Expense Details
+          </a>
+        </li>
+
+        <!--<li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/my-dashboard"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Dashboard
+          </a>
+        </li>
+
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/mill"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Mill
+          </a>
+        </li>-->
+
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/login"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Login
+          </a>
+        </li>
+
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/register"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Register
+          </a>
+        </li>
+
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/users"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Registered Users
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

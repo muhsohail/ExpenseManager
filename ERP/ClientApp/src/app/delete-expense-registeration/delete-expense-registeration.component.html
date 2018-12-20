@@ -1,7 +1,12 @@
+<h3>Delete Expense Entry</h3>
+  <img src="../../assets/Delete.jpg" alt="Delete" width="50" height="30">
+<hr />
+
+<h4>Are you sure you?</h4>
 <p>
-  delete-expense-registeration works!
-  Are you sure you want to delete {{objExpense._id}}
+  Remove expense entry: {{objExpense.amount}}
 </p>
-<div class="form-group">
+<div class="btn-toolbar">
   <button (click)="deleteExpense(objExpense._id)" class="btn btn-primary">Delete</button>
+  <button (click)="cancelDeleteExpense()" [disabled]="angForm.invalid" class="btn btn-primary">Cancel</button>
 </div>

@@ -11,6 +11,13 @@ import { FormBuilder } from '@angular/forms';
 })
 export class DeleteExpenseRegisterationComponent implements OnInit {
   objExpense: any = {};
+
+  StartTime: Date;
+  EndTime: Date;
+  diff: any;
+  seconds: any;
+
+
   constructor(private route: ActivatedRoute,
     private router: Router,
     private expenseService: ExpenseService,
@@ -18,14 +25,29 @@ export class DeleteExpenseRegisterationComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-
+    debugger
     this.expenseService.editExpense(this.data.id).subscribe(res => {
       this.objExpense = res;
     });
   }
 
   deleteExpense(id) {
-      this.expenseService.deleteExpense(id);
-      this.dialogRef.close();
+    this.StartTime = new Date();
+
+    this.expenseService.deleteExpense(id);
+    this.dialogRef.close();
+
+    this.EndTime = new Date();
+    this.diff = this.EndTime.getTime() - this.StartTime.getTime();
+    this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
+
+    console.log("Delete expense call time in milisecond: " + this.diff);
+    console.log("Delete expense call time in seconds: " + this.seconds);
+
+  }
+
+  cancelDeleteExpense() {
+
+    this.dialogRef.close();
   }
 }

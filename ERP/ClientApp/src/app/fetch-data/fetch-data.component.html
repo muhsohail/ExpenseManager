@@ -1,9 +1,10 @@
 <!--<p> Page with records count <b>{{expensesCount}}</b> is loaded in milliseconds: <b>{{diff}}</b></p>-->
 <h2>Expense Enteries</h2>
 
-<!--<button *ngIf="btnAddShow" type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openBulkDeleteDialog()">
-  <i class="material-icons">clear</i>
-</button>-->
+<button *ngIf="btnAddShow" type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openDialog()">
+  <!--<i class="material-icons">add</i>--> Add Expense Entry
+</button>
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -23,7 +24,7 @@
       <td>{{ expense.category }}</td>
 
       <!--<td><a [routerLink]="['/edit', expense._id]" class="btn btn-primary">Edit</a></td>
-  <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>-->
+      <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>-->
 
       <td [hidden]="!btnEditShow">
         <a class="btn btn-primary" data-toggle="modal" (click)="editDialog(expense._id)">
@@ -50,6 +51,3 @@
     </tr>
   </tbody>
 </table>
-<button *ngIf="btnAddShow" type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openDialog()">
-  <!--<i class="material-icons">add</i>--> Add Expense Entry
-</button>

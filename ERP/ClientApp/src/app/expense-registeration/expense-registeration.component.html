@@ -3,59 +3,36 @@
   <div class="card-body">
     <h3>Add Expense Entry</h3>
     <hr />
-    <form [formGroup]="angForm" (ngSubmit)="onSubmit()"novalidate>
+    <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="form-group">
-        <label>Amount</label>
-        <input type="text" class="form-control" name="amount" formControlName="amount" #amount />
-      </div>
-      <div *ngIf="angForm.controls['amount'].invalid && (angForm.controls['amount'].dirty || angForm.controls['amount'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['amount'].errors.required">
-          Amount spent is required.
-        </div>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Amount" name="amount" formControlName="amount" #amount value="">
+        </mat-form-field>
       </div>
 
       <div class="form-group">
-        <label>Date Spent</label>
-        <input type="text" class="form-control" name="datespent" formControlName="datespent" #datespent />
-      </div>
-      <div *ngIf="angForm.controls['datespent'].invalid && (angForm.controls['datespent'].dirty || angForm.controls['datespent'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['datespent'].errors.required">
-          Date Spent is required.
-        </div>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Date Spent" formControlName="dateSpent" >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
       </div>
 
       <div class="form-group">
-        <label>Purpose</label>
-        <input type="text" class="form-control" name="purpose" formControlName="purpose" #purpose />
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Purpose" value="" name="purpose" formControlName="purpose" #purpose>
+        </mat-form-field>
       </div>
-      <div *ngIf="angForm.controls['purpose'].invalid && (angForm.controls['purpose'].dirty || angForm.controls['purpose'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['purpose'].errors.required">
-          Purpose is required.
-        </div>
-      </div>
-
 
       <div class="form-group">
-        <label for="contry">Category</label>
-        <select class="form-control" id="category" name="category" formControlName="category">
-          <option *ngFor="let category of Categories" [value]="category.name">{{category.name}}</option>
-        </select>
+        <mat-form-field>
+          <mat-select placeholder="Expense Category" name="category" formControlName="category">
+            <mat-option *ngFor="let category of Categories" [value]="category.name">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div *ngIf="angForm.controls['category'].invalid && (angForm.controls['category'].dirty || angForm.controls['category'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['category'].errors.required">
-          category is required.
-        </div>
-      </div>  
-
-      <!--<div class="form-group">
-    <label>Category</label>
-    <input type="text" class="form-control" name="category" formControlName="category" #category />
-  </div>
-  <div *ngIf="angForm.controls['category'].invalid && (angForm.controls['category'].dirty || angForm.controls['category'].touched)" class="alert alert-danger">
-    <div *ngIf="angForm.controls['category'].errors.required">
-      category is required.
-    </div>
-  </div>-->
 
 
       <div class="btn-toolbar">

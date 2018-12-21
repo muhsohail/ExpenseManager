@@ -57,8 +57,17 @@ export class FetchDataComponent {
 
     dialogConfig.data = {
       id: 1,
-      title: 'Expense Entry'
+      title: 'Expense Entry',
+      height: '400px',
+      width: '900px'
     };
+
+    //const dialogRef = this.dialog.open(ExpenseRegisterationComponent, {
+    //  width: '250px',
+    //  data: { name: "A", animal: "B" }
+    //});
+
+    // TODO - Fix the width and height
     const dialogRef = this.dialog.open(ExpenseRegisterationComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(() => {
@@ -161,7 +170,7 @@ export class FetchDataComponent {
   }
   ngOnInit() {
     this.getCurrentLoggedInUser();
-
+    debugger
     //console.log(this.StartTime.getTime());
     this.StartTime = new Date();
     console.log(this.StartTime);

@@ -71,6 +71,9 @@ import { UserService } from './services/user.service';
 import { UsersComponent } from './users/users.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { BulkDeleteComponent } from './bulk-delete/bulk-delete.component';
+import { ToastaModule } from 'ngx-toasta';
+import { ToastrModule } from 'ng6-toastr-notifications';
+
 
 //import { HomeComponent } from './home';/
 
@@ -97,6 +100,8 @@ import { BulkDeleteComponent } from './bulk-delete/bulk-delete.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule,
     RouterModule.forRoot([
       //{ path: '', component: HomeComponent, pathMatch: 'full' },
@@ -110,6 +115,8 @@ import { BulkDeleteComponent } from './bulk-delete/bulk-delete.component';
       { path: 'users', component: UsersComponent },
 
     ]),
+    ToastaModule.forRoot(),
+    ToastrModule.forRoot(),
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -128,6 +135,7 @@ import { BulkDeleteComponent } from './bulk-delete/bulk-delete.component';
     ReactiveFormsModule,
     MatSelectModule,
     MatInputModule
+    
   ],
   providers: [
     AuthGuard,

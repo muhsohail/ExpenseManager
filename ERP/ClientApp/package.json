@@ -14,6 +14,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "6.0.7",
+    "@angular/cdk": "^6.2.0",
     "@angular/common": "6.0.7",
     "@angular/compiler": "6.0.7",
     "@angular/core": "6.0.7",
@@ -28,9 +29,11 @@
     "aspnet-prerendering": "^3.0.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "ng2-toastr": "^4.1.2",
+    "ng6-toastr-notifications": "^1.0.4",
+    "ngx-toasta": "^0.1.0",
     "rxjs": "^6.2.1",
-    "zone.js": "^0.8.26",
-    "@angular/cdk": "^6.2.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular/cli": "6.0.8",

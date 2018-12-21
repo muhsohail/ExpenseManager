@@ -38,20 +38,25 @@ export class ExpenseService {
       .get(`${this.uri}/edit/${id}`);
   }
 
-  updateExpense(amount, datespent, purpose, category, id) {
-
-    const obj = {
-      amount: amount,
-      dateSpent: datespent,
-      purpose: purpose,
-      category: category,
-      id: id
-    };
-    this
-      .http
-      .post(`${this.uri}/update/${id}`, obj)
-      .subscribe(res => console.log('Done'));
+  updateExpense(expense: expense, ) {
+    return this.http.post(`${this.uri}/update/${expense.id}`, expense);
+      //.subscribe(res => console.log('Done'));
   }
+
+  //updateExpense(amount, datespent, purpose, category, id) {
+
+  //  const obj = {
+  //    amount: amount,
+  //    dateSpent: datespent,
+  //    purpose: purpose,
+  //    category: category,
+  //    id: id
+  //  };
+  //  this
+  //    .http
+  //    .post(`${this.uri}/update/${id}`, obj)
+  //    .subscribe(res => console.log('Done'));
+  //}
 
   deleteExpense(id) {
     console.log(`${this.uri}/delete/${id}`);

@@ -10,7 +10,11 @@ let AdExpense = require('../models/AdExpense');
 
 // Defined store route
 adExpenseRoutes.route('/add').post(function (req, res) {
-  let adExpense = new AdExpense(req.body);
+    let adExpense = new AdExpense(req.body);
+    console.log(expense);
+    console.log("AdExpense.js called");
+
+
   adExpense.save()
     .then(game => {
     res.status(200).json({'adExpense': 'AdExpense in added successfully'});

@@ -8,9 +8,13 @@ let Expense = require('../models/Expense');
 // Defined store route
 ExpenseRoutes.route('/add').post(function (req, res) {
     let expense = new Expense(req.body);
+    console.log(expense);
+    console.log("expense.js called");
+
+    debugger
     expense.save()
         .then(game => {
-            res.status(200).json({ 'expense': 'expense in added successfully' });
+            res.status(200).json({ 'expense': 'expense has been added successfully' + expense });
         })
         .catch(err => {
             res.status(400).send("An error has occurred. Unable to add expense to database.");

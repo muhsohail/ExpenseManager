@@ -21,6 +21,11 @@ export class ExpenseService {
       .subscribe(res => console.log('Done'));
   }
 
+
+  register(expense: expense) {
+    return this.http.post(`${this.uri}/add`, expense);
+  }
+
   getExpenses() {
     return this
       .http

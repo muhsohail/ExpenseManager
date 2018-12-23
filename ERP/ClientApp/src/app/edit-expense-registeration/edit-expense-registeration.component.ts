@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { expense } from '../fetch-data/expense';
-import { ExpenseService } from '../expense-registeration/expense.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { first } from 'rxjs/operators';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { first } from 'rxjs/operators';
+import { ExpenseService } from '../expense-registeration/expense.service';
+import { expense } from '../fetch-data/expense';
 
 @Component({
   selector: 'app-edit-expense-registeration',
@@ -20,12 +20,10 @@ export class EditExpenseRegisterationComponent implements OnInit {
   EndTime: Date;
   diff: any;
   seconds: any;
-
+  expenseId: any;
 
   constructor(
     public toastr: ToastrManager,
-    private route: ActivatedRoute,
-    private router: Router,
     private expenseService: ExpenseService,
     private fb: FormBuilder, public dialogRef: MatDialogRef<EditExpenseRegisterationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -40,7 +38,7 @@ export class EditExpenseRegisterationComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      id:'',
+      id: '',
       amount: ['', Validators.required],
       dateSpent: ['', Validators.required],
       purpose: ['', Validators.required],
@@ -62,7 +60,7 @@ export class EditExpenseRegisterationComponent implements OnInit {
 
 
   updateExpense() {
-    this.angForm.value.id = this.expenseList._id;
+    this.angForm.value.id = this.expenseId;
     this.expenseService.updateExpense(this.angForm.value)
       .pipe(first())
       .subscribe(
@@ -75,47 +73,25 @@ export class EditExpenseRegisterationComponent implements OnInit {
         });
   }
 
-  //updateExpense(amount, dataspent, purpose, category, id) {
-  //  this.StartTime = new Date();
 
-  //  this.route.params.subscribe(params => {
-  //    this.expenseService.updateExpense(amount, dataspent, purpose, category, id);
-  //    this.dialogRef.close();
-
-
-  //  });
-
-  //  this.EndTime = new Date();
-  //  this.diff = this.EndTime.getTime() - this.StartTime.getTime();
-  //  this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
-
-  //  console.log("Update expense call time in milisecond: " + this.diff);
-  //  console.log("Update expense call time in seconds: " + this.seconds);
-
-  //}
-
-  cancelEditExpense() {
-
+  cancelEditExpense(): void {
+    debugger
     this.dialogRef.close();
   }
 
+  //ngOnInit() {
+  //  this.StartTime = new Date();
+  //  debugger
+  //  this.expenseService.editExpense(this.data.id).subscribe((res: expense) => {
+  //    this.expenseList = res;
+  //    this.expenseId = this.expenseList.id;
+  //  });
+  //}
+
   ngOnInit() {
-    this.StartTime = new Date();
-    debugger
-    this.expenseService.editExpense(this.data.id).subscribe((res: expense) => {
-      this.expenseList = res;
-
-      this.expenseList.dateSpentString = new Date(this.expenseList.dateSpent).toLocaleDateString();
-
-      this.EndTime = new Date();
-      this.diff = this.EndTime.getTime() - this.StartTime.getTime();
-      this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
-
-      console.log("Edit expense call time in milisecond: " + this.diff);
-      console.log("Edit expense call time in seconds: " + this.seconds);
-
-
-    });
+    this.expenseList = this.data.item;
+    this.expenseList.dateSpent = new Date(this.data.item.dateSpentString);
+    this.expenseId = this.data.item.id;
   }
 }
 

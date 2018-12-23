@@ -1,24 +1,13 @@
 <div class="card">
   <div class="card-body">
-    <form [formGroup]="angForm" (ngSubmit)="updateExpense()" novalidate>
+    <form [formGroup]="angForm" novalidate>
       <h3>Edit Expense Entry</h3>
-
 
       <div class="form-group">
         <mat-form-field class="example-full-width">
-          <input matInput name="amount" formControlName="amount" [(ngModel)]="expenseList.amount">
+          <input matInput formControlName="amount" [(ngModel)]="expenseList.amount">
         </mat-form-field>
       </div>
-
-      <!--<div class="form-group">
-    <label>Amount</label>
-    <input type="text" class="form-control" name="amount" formControlName="amount" #amount [(ngModel)]="expenseList.amount" />
-  </div>
-  <div *ngIf="angForm.controls['amount'].invalid && (angForm.controls['amount'].dirty || angForm.controls['amount'].touched)" class="alert alert-danger">
-    <div *ngIf="angForm.controls['amount'].errors.required">
-      Amount spent is required.
-    </div>
-  </div>-->
 
       <div class="form-group">
         <mat-form-field>
@@ -28,33 +17,11 @@
         </mat-form-field>
       </div>
 
-      <!--<div class="form-group">
-    <label>Date Spent</label>
-    <input type="text" class="form-control" name="datespent" formControlName="datespent" #datespent [(ngModel)]="expenseList.dateSpentString" />
-  </div>
-  <div *ngIf="angForm.controls['datespent'].invalid && (angForm.controls['datespent'].dirty || angForm.controls['datespent'].touched)" class="alert alert-danger">
-    <div *ngIf="angForm.controls['datespent'].errors.required">
-      Date Spent is required.
-    </div>
-  </div>-->
-
-
       <div class="form-group">
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Purpose" name="purpose" formControlName="purpose" #purpose [(ngModel)]="expenseList.purpose">
         </mat-form-field>
       </div>
-
-      <!--<div class="form-group">
-    <label>Purpose</label>
-    <input type="text" class="form-control" name="purpose" formControlName="purpose" #purpose [(ngModel)]="expenseList.purpose" />
-  </div>
-  <div *ngIf="angForm.controls['purpose'].invalid && (angForm.controls['purpose'].dirty || angForm.controls['purpose'].touched)" class="alert alert-danger">
-    <div *ngIf="angForm.controls['purpose'].errors.required">
-      Purpose is required.
-    </div>
-  </div>-->
-
 
       <div class="form-group">
         <mat-form-field>
@@ -64,20 +31,10 @@
         </mat-form-field>
       </div>
 
-      <!--<div class="form-group">
-        <label>Category</label>
-        <input type="text" class="form-control" name="category" formControlName="category" #category [(ngModel)]="expenseList.category" />
-      </div>
-      <div *ngIf="angForm.controls['category'].invalid && (angForm.controls['category'].dirty || angForm.controls['category'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['category'].errors.required">
-          category is required.
-        </div>
-      </div>-->
 
       <div class="btn-toolbar">
-        <!--<button (click)="updateExpense(amount.value, datespent.value, purpose.value, category.value, expenseList._id)" [disabled]="angForm.invalid" class="btn btn-primary">Update</button>-->
-        <button [disabled]="loading" class="btn btn-primary">Update</button>
-        <button (click)="cancelEditExpense()" [disabled]="angForm.invalid" class="btn btn-primary">Cancel</button>
+        <button (click)="updateExpense()" [disabled]="loading" class="btn btn-primary">Update</button>
+        <button (click)="cancelEditExpense()"class="btn btn-primary">Cancel</button>
       </div>
     </form>
   </div>

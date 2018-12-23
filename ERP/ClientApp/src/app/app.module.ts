@@ -102,6 +102,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTabsModule,
     FormsModule,
     RouterModule.forRoot([
       //{ path: '', component: HomeComponent, pathMatch: 'full' },

@@ -1,12 +1,15 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { expense } from '../fetch-data/expense';
+import { expenseViewModel } from '../fetch-data/expenseViewModel';
+
+
 import { ExpenseService } from '../expense-registeration/expense.service';
-import { MatDialog, MatDialogConfig } from "@angular/material";
+import { MatDialog, MatDialogConfig, MatTabsModule } from "@angular/material";
 import { ExpenseRegisterationComponent } from '../expense-registeration/expense-registeration.component';
 import { EditExpenseRegisterationComponent } from '../edit-expense-registeration/edit-expense-registeration.component';
 import { DeleteExpenseRegisterationComponent } from '../delete-expense-registeration/delete-expense-registeration.component';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatSortModule  } from '@angular/material';
 import { User } from '../models/user';
 import { Time } from '@angular/common';
 import { delay } from 'q';
@@ -26,7 +29,9 @@ export interface UserData {
   templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent {
-  expenseList: expense[];
+  expenseList: expense[];  
+  ELEMENT_DATA: expenseViewModel[] = [];
+  dataSource: any;
   loggedInUser: any;
   currentRole: any;
 
@@ -44,9 +49,13 @@ export class FetchDataComponent {
 
   uri = 'http://localhost:4000/expense';
 
-  constructor(private http: HttpClient, private expenseservice: ExpenseService, private dialog: MatDialog)
-  {
+  //displayedColumns: string[];
+  //dataSource: expense[];
+  displayedColumns: string[] = ['id', 'amount', 'dateSpentString', 'purpose', 'category', 'columndelete','columnedit'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
+  constructor(private http: HttpClient, private expenseservice: ExpenseService, private dialog: MatDialog) {
   }
   openDialog() {
 
@@ -116,7 +125,25 @@ export class FetchDataComponent {
       this.ngOnInit()
     });
   }
+  editExpense(expense) {
 
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      item: expense,
+      title: 'Edit Expense Entry'
+    };
+
+    //this.dialog.open(ExpenseRegisterationComponent, dialogConfig);
+    const dialogRef = this.dialog.open(EditExpenseRegisterationComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit()
+    });
+  }
   deleteDialog(id) {
     const dialogConfig = new MatDialogConfig();
 
@@ -136,11 +163,34 @@ export class FetchDataComponent {
     });
   }
 
+  deleteExpense(expense) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      item: expense,
+      title: 'Delete Expense Entry'
+    };
+
+    const dialogRef = this.dialog.open(DeleteExpenseRegisterationComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      //expense = result;
+      //this.ngOnInit();
+
+    });
+
+    dialogRef.close();  
+  }
+
+
   getCurrentLoggedInUser() {
-    
+
     if (localStorage.getItem('currentUser')) {
 
-      this.loggedInUser =  localStorage.getItem('currentUser');
+      this.loggedInUser = localStorage.getItem('currentUser');
       console.log(this.loggedInUser);
 
       if (JSON.parse(this.loggedInUser).role == "Admin") {
@@ -165,52 +215,48 @@ export class FetchDataComponent {
         this.btnBulkDeleteShow = true;
       }
     }
-
-    
   }
+
   ngOnInit() {
     this.getCurrentLoggedInUser();
     debugger
-    //console.log(this.StartTime.getTime());
-    this.StartTime = new Date();
-    console.log(this.StartTime);
-    console.log(this.StartTime.getTime());
-    //console.log(this.StartTime.getMilliseconds());
-    //console.log(this.StartTime.getSeconds());
     this.expenseservice
       .getExpenses()
       .subscribe((data: expense[]) => {
-
-        for (var i = 0; i < data.length; i++) {
-          new Date(data[i].dateSpent).toLocaleDateString();
-        }
-
         this.expenseList = data;
-        this.expensesCount = this.expenseList.length;
-
-      //  console.log(this.StartTime.hours.toString());
+        this.expensesCount = data.length;
 
         for (var i = 0; i < data.length; i++) {
-          this.expenseList[i].dateSpentString = new Date(this.expenseList[i].dateSpent).toLocaleDateString();
+          this.ELEMENT_DATA.push({
+            'id': data[i]._id,
+            'amount': data[i].amount,
+            'dateSpentString': new Date(data[i].dateSpent).toLocaleDateString(),
+            'purpose': data[i].purpose,
+            'category': data[i].category
+          });
+
+
+          //this.expenseList[i].amount = data[i].amount;
+          //this.expenseList[i].dateSpentString = new Date(data[i].dateSpent).toLocaleDateString();
+          //this.expenseList[i].purpose = data[i].purpose;
+          //this.expenseList[i].category = data[i].category;
         }
 
-        this.EndTime = new Date();
-        console.log(this.EndTime);
-        console.log(this.EndTime.getTime());
-
-        console.log(Math.floor((this.EndTime.getTime() - this.StartTime.getTime()) / 1000));
-        this.diff = this.EndTime.getTime() - this.StartTime.getTime();
-
-        this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
-        console.log(this.seconds);
-
-
-        console.log(this.expenseList);
-        
+        //this.dataSource = this.ELEMENT_DATA;
+        this.dataSource = new MatTableDataSource<expenseViewModel>(this.ELEMENT_DATA);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        //this.paginator._changePageSize(this.paginator.pageSize); 
+        // TODO - Refresh after Edit Dialog closed.
       });
   }
 
-  delay(ms: number) {
-    new Promise(resolve => setTimeout(() => resolve(), 1000)).then(() => console.log("fired"));
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
+
+//const ELEMENT_DATA: expenseViewModel[] = [
+//  { amount: '1', dateSpentString: 'Hydrogen', purpose: '1.0079', category: 'H' }
+//];
+

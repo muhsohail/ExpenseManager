@@ -7,6 +7,6 @@
   Remove expense entry: {{objExpense.amount}}
 </p>
 <div class="btn-toolbar">
-  <button (click)="deleteExpense(objExpense._id)" class="btn btn-primary">Delete</button>
+  <button (click)="deleteExpense(objExpense.id)" class="btn btn-primary">Delete</button>
   <button (click)="cancelDeleteExpense()" [disabled]="angForm.invalid" class="btn btn-primary">Cancel</button>
 </div>

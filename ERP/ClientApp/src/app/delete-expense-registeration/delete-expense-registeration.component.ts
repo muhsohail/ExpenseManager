@@ -24,26 +24,21 @@ export class DeleteExpenseRegisterationComponent implements OnInit {
     private fb: FormBuilder, public dialogRef: MatDialogRef<DeleteExpenseRegisterationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
+  //ngOnInit() {
+  //  debugger
+  //  this.expenseService.editExpense(this.data.id).subscribe(res => {
+  //    this.objExpense = res;
+  //  });
+  //}
+
   ngOnInit() {
     debugger
-    this.expenseService.editExpense(this.data.id).subscribe(res => {
-      this.objExpense = res;
-    });
+    this.objExpense = this.data.item;
   }
 
   deleteExpense(id) {
-    this.StartTime = new Date();
-
     this.expenseService.deleteExpense(id);
     this.dialogRef.close();
-
-    this.EndTime = new Date();
-    this.diff = this.EndTime.getTime() - this.StartTime.getTime();
-    this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
-
-    console.log("Delete expense call time in milisecond: " + this.diff);
-    console.log("Delete expense call time in seconds: " + this.seconds);
-
   }
 
   cancelDeleteExpense() {

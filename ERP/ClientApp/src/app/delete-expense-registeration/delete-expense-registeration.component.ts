@@ -38,7 +38,7 @@ export class DeleteExpenseRegisterationComponent implements OnInit {
 
   deleteExpense(id) {
     this.expenseService.deleteExpense(id);
-    this.dialogRef.close();
+    //this.dialogRef.close();
   }
 
   cancelDeleteExpense() {

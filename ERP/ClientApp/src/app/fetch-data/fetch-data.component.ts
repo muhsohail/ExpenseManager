@@ -176,13 +176,9 @@ export class FetchDataComponent {
 
     const dialogRef = this.dialog.open(DeleteExpenseRegisterationComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      //expense = result;
-      //this.ngOnInit();
-
+    dialogRef.afterClosed().subscribe(() => {
+        this.ngOnInit();
     });
-
-    dialogRef.close();  
   }
 
 

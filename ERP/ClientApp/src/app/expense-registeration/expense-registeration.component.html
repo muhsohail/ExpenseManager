@@ -27,8 +27,8 @@
       <div class="form-group">
         <mat-form-field>
           <mat-select placeholder="Expense Category" name="category" formControlName="category">
-            <mat-option *ngFor="let category of Categories" [value]="category.name">
-              {{category.name}}
+            <mat-option *ngFor="let category of Categories" [value]="category.code">
+              {{category.code}}
             </mat-option>
           </mat-select>
         </mat-form-field>

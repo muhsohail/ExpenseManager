@@ -15,7 +15,6 @@ import { Time } from '@angular/common';
 import { delay } from 'q';
 import { BulkDeleteComponent } from '../bulk-delete/bulk-delete.component';
 
-
 export interface UserData {
 
   id: string;
@@ -55,7 +54,10 @@ export class FetchDataComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private http: HttpClient, private expenseservice: ExpenseService, private dialog: MatDialog) {
+  constructor(
+    private http: HttpClient, 
+    private expenseservice: ExpenseService, 
+    private dialog: MatDialog) {
   }
   openDialog() {
 
@@ -222,7 +224,9 @@ export class FetchDataComponent {
         this.expenseList = data;
         this.expensesCount = data.length;
 
-        for (var i = 0; i < data.length; i++) {
+        this.ELEMENT_DATA = [];
+        for (var i = 0; i < data.length; i++) {         
+
           this.ELEMENT_DATA.push({
             'id': data[i].id,
             'amount': data[i].amount,

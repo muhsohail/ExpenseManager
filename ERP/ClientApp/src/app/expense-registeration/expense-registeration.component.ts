@@ -8,6 +8,8 @@ import { AlertService } from '../services/alert.service';
 import { Router } from '@angular/router';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData } from 'ngx-toasta';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import{CategoryService} from '../services/category.service';
+import { categoryViewModel } from '../category/categoryViewModel';
 
 
 @Component({
@@ -26,18 +28,14 @@ export class ExpenseRegisterationComponent implements OnInit {
   seconds: any;
   loading = false;
   submitted = false;
-  // TODO - Move to database
-  Categories = [
-    { 'id': 1, 'name': 'Category 1' },
-    { 'id': 2, 'name': 'Category 2' },
-    { 'id': 3, 'name': 'Category 3' }
-  ];
+  Categories:categoryViewModel[];
 
   constructor(
     public toastr: ToastrManager,
     private toastaService: ToastaService, private toastaConfig: ToastaConfig,
     private expenseService: ExpenseService,
     private alertService: AlertService,
+    private categoryService: CategoryService,
     private router: Router,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ExpenseRegisterationComponent>,
@@ -114,33 +112,13 @@ export class ExpenseRegisterationComponent implements OnInit {
   //  addExpense(amount, datespent, purpose, category) {
 
   addExpense(amount, datespent, purpose, category) {
-
-    //this.StartTime = new Date();
-
     this.expenseService.addExpense(amount, datespent, purpose, category);
     this.dialogRef.close();
-
-    //this.EndTime = new Date();
-    //this.diff = this.EndTime.getTime() - this.StartTime.getTime();
-    //this.seconds = ((this.diff % 60000) / 1000).toFixed(0);
-
-    //console.log("Add expense call time in milisecond: " + this.diff);
-    //console.log("Add expense call time in seconds: " + this.seconds);
-
-    // for loop
-    //for (var i = 0; i < 500; i++) {
-    //  this.expenseService.addExpense(amount, datespent, purpose, category);
-    //}
-
-    //this.dialogRef.close();
-
   }
 
   onSubmit() {
 
-
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.angForm.invalid) {
       return;
@@ -166,6 +144,11 @@ export class ExpenseRegisterationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.categoryService
+    .getCategories()
+    .subscribe((data: categoryViewModel[]) => {
+      this.Categories = data;
+    });
   }
 }
 

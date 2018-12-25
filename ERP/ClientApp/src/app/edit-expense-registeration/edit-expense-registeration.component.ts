@@ -6,6 +6,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { first } from 'rxjs/operators';
 import { ExpenseService } from '../expense-registeration/expense.service';
 import { expense } from '../fetch-data/expense';
+import{CategoryService} from '../services/category.service';
+import { categoryViewModel } from '../category/categoryViewModel';
 
 @Component({
   selector: 'app-edit-expense-registeration',
@@ -21,20 +23,17 @@ export class EditExpenseRegisterationComponent implements OnInit {
   diff: any;
   seconds: any;
   expenseId: any;
+  Categories:categoryViewModel[];
 
   constructor(
     public toastr: ToastrManager,
     private expenseService: ExpenseService,
+    private categoryService: CategoryService,
     private fb: FormBuilder, public dialogRef: MatDialogRef<EditExpenseRegisterationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.createForm();
   }
-
-  Categories = [
-    { 'id': 1, 'name': 'Category 1' },
-    { 'id': 2, 'name': 'Category 2' },
-    { 'id': 3, 'name': 'Category 3' }
-  ];
+ 
 
   createForm() {
     this.angForm = this.fb.group({
@@ -89,9 +88,16 @@ export class EditExpenseRegisterationComponent implements OnInit {
   //}
 
   ngOnInit() {
-    this.expenseList = this.data.item;
-    this.expenseList.dateSpent = new Date(this.data.item.dateSpentString);
-    this.expenseId = this.data.item.id;
+    debugger
+    this.categoryService
+    .getCategories()
+    .subscribe((data: categoryViewModel[]) => {
+      this.Categories = data;
+
+      this.expenseList = this.data.item;
+      this.expenseList.dateSpent = new Date(this.data.item.dateSpentString);
+      this.expenseId = this.data.item.id;
+    });
   }
 }
 

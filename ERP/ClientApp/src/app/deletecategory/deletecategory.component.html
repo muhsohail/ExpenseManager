@@ -1,0 +1,12 @@
+<h3>Delete Category Entry</h3>
+  <img src="../../assets/Delete.jpg" alt="Delete" width="50" height="30">
+<hr />
+
+<h4>Are you sure you?</h4>
+<p>
+  Remove category entry: {{category.code}}
+</p>
+<div class="btn-toolbar">
+  <button mat-button (click)="delete(category.id)" cdkFocusInitial>Delete</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</div>

@@ -57,6 +57,11 @@
             <span class='glyphicon glyphicon-th-list'></span> Registered Users
           </a>
         </li>
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/category"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Category
+          </a>
+        </li>
       </ul>
     </div>
   </div>

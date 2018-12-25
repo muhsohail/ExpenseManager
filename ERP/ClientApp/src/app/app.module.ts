@@ -73,6 +73,10 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { BulkDeleteComponent } from './bulk-delete/bulk-delete.component';
 import { ToastaModule } from 'ngx-toasta';
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { CategoryComponent } from './category/category.component';
+import { DeletecategoryComponent } from './deletecategory/deletecategory.component';
+import { EditcategoryComponent } from './editcategory/editcategory.component';
+import { RegistertcategoryComponent } from './registertcategory/registertcategory.component';
 
 
 //import { HomeComponent } from './home';/
@@ -95,7 +99,11 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     RegisterComponent,
     UsersComponent,
     DeleteUserComponent,
-    BulkDeleteComponent
+    BulkDeleteComponent,
+    CategoryComponent,
+    DeletecategoryComponent,
+    EditcategoryComponent,
+    RegistertcategoryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -114,6 +122,8 @@ import { ToastrModule } from 'ng6-toastr-notifications';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'users', component: UsersComponent },
+      { path: 'category', component: CategoryComponent },
+
 
     ]),
     ToastaModule.forRoot(),
@@ -150,6 +160,14 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     fakeBackendProvider
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ExpenseRegisterationComponent, EditExpenseRegisterationComponent, DeleteExpenseRegisterationComponent, DeleteUserComponent, BulkDeleteComponent]
+  entryComponents: [
+    ExpenseRegisterationComponent, 
+    EditExpenseRegisterationComponent,
+    DeleteExpenseRegisterationComponent, 
+    DeleteUserComponent, 
+    BulkDeleteComponent,
+    DeletecategoryComponent,
+    EditcategoryComponent,
+    RegistertcategoryComponent]
 })
 export class AppModule { }

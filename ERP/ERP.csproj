@@ -42,12 +42,6 @@
   <ItemGroup>
     <Folder Include="ClientApp\e2e\app\" />
     <Folder Include="ClientApp\src\Images\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ERP.EntityFramework\ERP.EntityFramework.csproj" />
-    <ProjectReference Include="..\ERP.Services\ERP.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

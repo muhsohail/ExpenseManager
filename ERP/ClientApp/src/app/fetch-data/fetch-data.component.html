@@ -50,6 +50,18 @@
           <td mat-cell *matCellDef="let element"> {{element.category}} </td>
         </ng-container>
 
+        <!-- Created By -->
+        <ng-container matColumnDef="createdby">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Created By </th>
+          <td mat-cell *matCellDef="let element"> {{element.createdby}} </td>
+        </ng-container>
+
+        <!-- Last Updated By -->
+        <ng-container matColumnDef="lastupdateddateString">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Updated Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastupdateddateString}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="columndelete">
           <th style="width:15%;" mat-header-cell *matHeaderCellDef> </th>
           <td mat-cell *matCellDef="let element">
@@ -112,6 +124,18 @@
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
           <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+        </ng-container>
+
+        <!-- Created By -->
+        <ng-container matColumnDef="createdby">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Created By </th>
+          <td mat-cell *matCellDef="let element"> {{element.createdby}} </td>
+        </ng-container>
+
+        <!-- Last Updated By -->
+        <ng-container matColumnDef="lastupdateddateString">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Updated Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastupdateddateString}} </td>
         </ng-container>
 
         <ng-container matColumnDef="columndelete">

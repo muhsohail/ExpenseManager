@@ -36,7 +36,7 @@ export class CategoryComponent implements OnInit {
         this.ELEMENT_DATA = [];
         for (var i = 0; i < data.length; i++) {
           this.ELEMENT_DATA.push({
-            'id': data[i]._id,
+            'id': data[i].id,
             'code': data[i].code,
             'description': data[i].description,
           });

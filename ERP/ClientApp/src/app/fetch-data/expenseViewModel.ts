@@ -4,4 +4,6 @@ export interface expenseViewModel {
   dateSpentString: String;
   purpose: String;
   category: String;
+  createdby: String;
+  lastupdateddateString: String;
 }

@@ -5,4 +5,6 @@ export interface expense {
   purpose: String;
   category: String;
   dateSpentString: String;
+  createdby:String;
+  lastupdateddate:Date;
 }

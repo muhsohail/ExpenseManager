@@ -50,7 +50,7 @@ export class FetchDataComponent {
 
   //displayedColumns: string[];
   //dataSource: expense[];
-  displayedColumns: string[] = ['id', 'amount', 'dateSpentString', 'purpose', 'category', 'columndelete','columnedit'];
+  displayedColumns: string[] = ['id', 'amount', 'dateSpentString', 'purpose', 'category', 'createdby','lastupdateddateString', 'columndelete','columnedit'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -67,16 +67,8 @@ export class FetchDataComponent {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      id: 1,
-      title: 'Expense Entry',
-      height: '400px',
-      width: '900px'
+      user: this.loggedInUser
     };
-
-    //const dialogRef = this.dialog.open(ExpenseRegisterationComponent, {
-    //  width: '250px',
-    //  data: { name: "A", animal: "B" }
-    //});
 
     // TODO - Fix the width and height
     const dialogRef = this.dialog.open(ExpenseRegisterationComponent, dialogConfig);
@@ -232,7 +224,9 @@ export class FetchDataComponent {
             'amount': data[i].amount,
             'dateSpentString': new Date(data[i].dateSpent).toLocaleDateString(),
             'purpose': data[i].purpose,
-            'category': data[i].category
+            'category': data[i].category,
+            'createdby':  data[i].hasOwnProperty("createdby") ? data[i].createdby : "admin",
+            'lastupdateddateString': data[i].hasOwnProperty("lastupdateddate") ? new Date(data[i].lastupdateddate).toLocaleDateString() : new Date().toLocaleDateString()
           });
 
 

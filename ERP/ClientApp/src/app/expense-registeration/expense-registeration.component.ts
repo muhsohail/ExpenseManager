@@ -10,6 +10,7 @@ import { ToastaService, ToastaConfig, ToastOptions, ToastData } from 'ngx-toasta
 import { ToastrManager } from 'ng6-toastr-notifications';
 import{CategoryService} from '../services/category.service';
 import { categoryViewModel } from '../category/categoryViewModel';
+import { User } from '../models/user';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class ExpenseRegisterationComponent implements OnInit {
   loading = false;
   submitted = false;
   Categories:categoryViewModel[];
+  loggedInUser: any;
 
   constructor(
     public toastr: ToastrManager,
@@ -100,7 +102,11 @@ export class ExpenseRegisterationComponent implements OnInit {
       amount: ['', Validators.required],
       dateSpent: ['', Validators.required],
       purpose: ['', Validators.required],
-      category: ''
+      category: '',
+      createdby:'',
+      lastupdateddate:''
+
+
     });
   }
 
@@ -109,12 +115,6 @@ export class ExpenseRegisterationComponent implements OnInit {
     this.dialogRef.close();
 
   }
-  //  addExpense(amount, datespent, purpose, category) {
-
-  addExpense(amount, datespent, purpose, category) {
-    this.expenseService.addExpense(amount, datespent, purpose, category);
-    this.dialogRef.close();
-  }
 
   onSubmit() {
 
@@ -122,6 +122,12 @@ export class ExpenseRegisterationComponent implements OnInit {
     // stop here if form is invalid
     if (this.angForm.invalid) {
       return;
+    }
+    else
+    {
+      this.angForm.value.createdby = JSON.parse(this.loggedInUser).username;
+      this.angForm.value.lastupdateddate = new Date();
+
     }
 
     debugger
@@ -144,17 +150,24 @@ export class ExpenseRegisterationComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger
+    
     this.categoryService
     .getCategories()
     .subscribe((data: categoryViewModel[]) => {
       this.Categories = data;
+      this.getCurrentLoggedInUser();
     });
+  }
+
+  getCurrentLoggedInUser() {
+
+    if (localStorage.getItem('currentUser')) {
+      this.loggedInUser = localStorage.getItem('currentUser');
+    }
   }
 }
 
 export interface DialogData {
-  amount: string;
-  purpose: string;
-  datespent: Date;
-  category: string;
+  user: User;
 }

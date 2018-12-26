@@ -11,7 +11,6 @@ let Expense = new Schema(
             type: String
         },
         dateSpent: {
-            //type: { type: Date, default: Date.now }
              type: Date
         },
         purpose: {
@@ -19,6 +18,12 @@ let Expense = new Schema(
         },
         category: {
             type: String
+        },
+        createdby:{
+            type:String
+        },
+        lastupdateddate:{
+            type: Date
         }
 
     },

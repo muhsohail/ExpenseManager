@@ -181,7 +181,6 @@ export class FetchDataComponent {
     if (localStorage.getItem('currentUser')) {
 
       this.loggedInUser = localStorage.getItem('currentUser');
-      console.log(this.loggedInUser);
 
       if (JSON.parse(this.loggedInUser).role == "Admin") {
         this.btnDeleteShow = true;

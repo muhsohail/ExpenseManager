@@ -122,7 +122,7 @@ import { RegistertcategoryComponent } from './registertcategory/registertcategor
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'category', component: CategoryComponent },
+      { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
 
 
     ]),

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
 })
 export class NavMenuComponent {
   isExpanded = false;
+  loggedInUser: string;
+  showMenu: boolean;
+
+  ngOnInit() {
+    debugger    
+    this.getCurrentLoggedInUser();
+  }
 
   collapse() {
     this.isExpanded = false;
@@ -14,5 +22,16 @@ export class NavMenuComponent {
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  getCurrentLoggedInUser() {
+
+    if (localStorage.getItem('currentUser')) {
+      this.showMenu = true;
+      this.loggedInUser = localStorage.getItem('currentUser');
+    }
+    else{
+      this.showMenu = false;
+    }
   }
 }

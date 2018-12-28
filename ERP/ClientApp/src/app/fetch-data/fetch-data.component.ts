@@ -227,12 +227,6 @@ export class FetchDataComponent {
             'createdby':  data[i].hasOwnProperty("createdby") ? data[i].createdby : "admin",
             'lastupdateddateString': data[i].hasOwnProperty("lastupdateddate") ? new Date(data[i].lastupdateddate).toLocaleDateString() : new Date().toLocaleDateString()
           });
-
-
-          //this.expenseList[i].amount = data[i].amount;
-          //this.expenseList[i].dateSpentString = new Date(data[i].dateSpent).toLocaleDateString();
-          //this.expenseList[i].purpose = data[i].purpose;
-          //this.expenseList[i].category = data[i].category;
         }
 
         //this.dataSource = this.ELEMENT_DATA;

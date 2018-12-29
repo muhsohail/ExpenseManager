@@ -85,16 +85,18 @@ UserRoutes.route('/update/:id').post(function (req, res) {
         if (!user)
             console.log('Could not load document');
         else {
-            user.amount = req.body.amount;
-            user.dateSpent = req.body.dateSpent;
-            user.purpose = req.body.purpose;
-            user.category = req.body.category;
+            user.firstName = req.body.firstname;
+            user.lastName = req.body.lastname;
+            user.username = req.body.username;
+            user.role = req.body.role;
+            user.password = req.body.password;
+
 
             user.save().then(user => {
-                res.json('Update complete');
+                res.json('User has been successfully updated in the database');
             })
                 .catch(err => {
-                    res.status(400).send("unable to update the database");
+                    res.status(400).send("Whoops, something went wrong.");
                 });
         }
     });

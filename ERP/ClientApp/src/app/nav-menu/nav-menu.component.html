@@ -40,17 +40,13 @@
           </a>
         </li>-->
 
-        <li [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/login"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span> Logout
-          </a>
-        </li>
 
-        <li [routerLinkActive]='["link-active"]'>
+
+        <!-- <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/register"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> Register
           </a>
-        </li>
+        </li> -->
 
         <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/users"]' (click)='collapse()'>
@@ -62,6 +58,12 @@
             <span class='glyphicon glyphicon-th-list'></span> Category
           </a>
         </li>
+
+        <li [routerLinkActive]='["link-active"]'>
+            <a [routerLink]='["/login"]' (click)='collapse()'>
+              <span class='glyphicon glyphicon-th-list'></span> Logout
+            </a>
+          </li>
       </ul>
     </div>
   </div>

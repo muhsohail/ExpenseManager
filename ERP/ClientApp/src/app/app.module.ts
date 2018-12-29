@@ -77,6 +77,8 @@ import { CategoryComponent } from './category/category.component';
 import { DeletecategoryComponent } from './deletecategory/deletecategory.component';
 import { EditcategoryComponent } from './editcategory/editcategory.component';
 import { RegistertcategoryComponent } from './registertcategory/registertcategory.component';
+import { EdituserComponent } from './users/edituser/edituser.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
 
 
 //import { HomeComponent } from './home';/
@@ -103,7 +105,9 @@ import { RegistertcategoryComponent } from './registertcategory/registertcategor
     CategoryComponent,
     DeletecategoryComponent,
     EditcategoryComponent,
-    RegistertcategoryComponent
+    RegistertcategoryComponent,
+    EdituserComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -121,7 +125,7 @@ import { RegistertcategoryComponent } from './registertcategory/registertcategor
       { path: 'mill', component: MillComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'users', component: UsersComponent },
+      { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
 
 
@@ -168,6 +172,10 @@ import { RegistertcategoryComponent } from './registertcategory/registertcategor
     BulkDeleteComponent,
     DeletecategoryComponent,
     EditcategoryComponent,
-    RegistertcategoryComponent]
+    RegistertcategoryComponent,
+    EdituserComponent,
+    AddUserComponent
+  ]
+
 })
 export class AppModule { }

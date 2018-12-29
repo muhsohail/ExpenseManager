@@ -25,8 +25,9 @@ export class UserService {
   }
 
   update(user: User) {
-    return this.http.put(`${this.uri}/update/` + user.id, user);
+    return this.http.post(`${this.uri}/update/${user.id}`, user);
   }
+
 
   delete(id) {
     const obj = {

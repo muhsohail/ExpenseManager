@@ -38,7 +38,7 @@ export class ExpenseService {
       .get(`${this.uri}/edit/${id}`);
   }
 
-  updateExpense(expense: expense, ) {
+  updateExpense(expense: expense ) {
     return this.http.post(`${this.uri}/update/${expense.id}`, expense);
       //.subscribe(res => console.log('Done'));
   }

@@ -1,0 +1,48 @@
+<!-- create.component.html -->
+<div class="card">
+  <div class="card-body">
+    <h3>Add User Entry</h3>
+    <hr />
+    <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First Name" name="firstName" formControlName="firstName" #firstName value="">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" value="" name="lastName" formControlName="lastName" #lastName>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="User Role" name="Role" formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role.name">
+              {{role.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" value="" name="username" formControlName="username" #username>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" value="" name="password" formControlName="password" #password>
+        </mat-form-field>
+      </div>
+
+      <div class="btn-toolbar">
+        <button mat-button class="btn btn-primary" cdkFocusInitial>Add</button>
+        <button mat-button (click)="cancel()" class="btn btn-primary">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

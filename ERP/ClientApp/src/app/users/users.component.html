@@ -1,25 +1,60 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <td>First Name </td>
-      <td>Last Name</td>
-      <td>Role</td>
-      <!--<td colspan="2">Actions</td>-->
-    </tr>
-  </thead>
+<button type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="add()">
+    <!--<i class="material-icons">add</i>--> Add New User
+  </button>
+<mat-tab-group>
+  <mat-tab label="Active">
+    <h3>
+      Users Enteries (Active)
+    </h3>
+    <div class="mat-elevation-z8">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
 
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.role }}</td>
-      
-      <!--<td [hidden]="!btnDeleteShow"><a class="btn btn-primary" data-toggle="modal" (click)="editDialog(expense._id)">Edit</a></td>-->
-      <td><a class="btn btn-danger" data-toggle="modal" (click)="deleteDialog(user._id)">Delete</a></td>
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" width="100%">
 
-    </tr>
-  </tbody>
-</table>
-<!--<button *ngIf="btnDeleteShow" type="button" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" data-toggle="modal" (click)="openDialog()">
-  <i class="material-icons">add</i>
-</button>-->
+        <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef [style.display]="'none'"></th>
+          <td mat-cell [style.display]="'none'" *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastname">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+          <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="columndelete">
+          <th style="width:15%;" mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="deleteUser(element)">delete</mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="columnedit">
+          <th style="width:15%;" mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="editUser(element)">edit</mat-icon>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    </div>
+  </mat-tab>
+</mat-tab-group>

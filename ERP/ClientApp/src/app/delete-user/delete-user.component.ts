@@ -20,16 +20,17 @@ export class DeleteUserComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-
-    this.userService.getById(this.data.id).subscribe(res => {
-      this.objUser = res;
-    });
-
+    debugger
+    this.objUser = this.data.item;
   }
 
-  deleteUser(id) {
+  delete(id) {
     debugger
     this.userService.delete(id);
+    this.dialogRef.close();
+
+  }
+  cancel() {
     this.dialogRef.close();
   }
 }

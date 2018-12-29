@@ -1,6 +1,10 @@
 <p>
-  Are you sure you want to delete user: {{objUser._id}}
+  Are you sure you want to delete user: {{objUser.firstname}}
 </p>
-<div class="form-group">
-  <button (click)="deleteUser(objUser._id)" class="btn btn-primary">Delete</button>
-</div>
+
+<div class="btn-toolbar">
+    <button mat-button (click)="delete(objUser.id)" cdkFocusInitial>Delete</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+  </div>
+
+  

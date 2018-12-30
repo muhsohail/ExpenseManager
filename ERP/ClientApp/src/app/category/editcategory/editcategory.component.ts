@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { first } from 'rxjs/operators';
-import { CategoryService } from '../services/category.service';
-import { categoryViewModel } from '../category/categoryViewModel';
+import { CategoryService } from '../../services/category.service';
+import { categoryViewModel } from '../../viewModels/categoryViewModel';
 
 @Component({
   selector: 'app-editcategory',

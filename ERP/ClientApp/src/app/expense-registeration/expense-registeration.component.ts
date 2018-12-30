@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ExpenseService } from './expense.service';
+import { ExpenseService } from '../services/expense.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { expense } from '../fetch-data/expense';
 import { first } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData } from 'ngx-toasta';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { CategoryService } from '../services/category.service';
-import { categoryViewModel } from '../category/categoryViewModel';
+import { categoryViewModel } from '../viewModels/categoryViewModel';
 import { User } from '../models/user';
 
 

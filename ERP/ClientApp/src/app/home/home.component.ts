@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { expense } from '../fetch-data/expense';
 import { expenseViewModel } from '../fetch-data/expenseViewModel';
-import { ExpenseService } from '../expense-registeration/expense.service';
+import { ExpenseService } from '../services/expense.service';
 import { from } from 'rxjs';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
 import { Chart } from 'chart.js'
@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
             {
               'name': this.users[i].firstName,
               'amountDue': Math.round(this.totalAmoutnSpent * this.users[i].percentage * 100) / 100,
-              'returned': this.returnedAmount,
+              'returned': this.returnedAmount,  
               'remaining':(Math.round(this.totalAmoutnSpent * this.users[i].percentage * 100) / 100) - (this.returnedAmount)
             });
         }

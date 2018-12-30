@@ -4,7 +4,7 @@ import { expense } from '../fetch-data/expense';
 import { expenseViewModel } from '../fetch-data/expenseViewModel';
 
 
-import { ExpenseService } from '../expense-registeration/expense.service';
+import { ExpenseService } from '../services/expense.service';
 import { MatDialog, MatDialogConfig, MatTabsModule } from "@angular/material";
 import { ExpenseRegisterationComponent } from '../expense-registeration/expense-registeration.component';
 import { EditExpenseRegisterationComponent } from '../edit-expense-registeration/edit-expense-registeration.component';

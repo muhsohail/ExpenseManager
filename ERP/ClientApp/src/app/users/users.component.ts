@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { expense } from '../fetch-data/expense';
-import { ExpenseService } from '../expense-registeration/expense.service';
+import { ExpenseService } from '../services/expense.service';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { ExpenseRegisterationComponent } from '../expense-registeration/expense-registeration.component';
 import { EditExpenseRegisterationComponent } from '../edit-expense-registeration/edit-expense-registeration.component';
@@ -9,7 +9,7 @@ import { DeleteExpenseRegisterationComponent } from '../delete-expense-registera
 import { MatPaginator, MatSort, MatTableDataSource, MatSortModule } from '@angular/material';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
-import { DeleteUserComponent } from '../delete-user/delete-user.component';
+import { DeleteUserComponent } from '../users/delete-user/delete-user.component';
 import { UserViewModel } from '../users/UserViewModel';
 import { EdituserComponent } from '../users/edituser/edituser.component';
 import{AddUserComponent} from '../users/add-user/add-user.component';

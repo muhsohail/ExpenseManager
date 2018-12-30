@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../../services/category.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { first } from 'rxjs/operators';
 

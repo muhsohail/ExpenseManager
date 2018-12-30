@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { categoryViewModel } from '../category/categoryViewModel'
+import { categoryViewModel } from '../viewModels/categoryViewModel'
 import { MatSort, MatPaginator, MatTableDataSource, MatSortModule } from '@angular/material';
 import { CategoryService } from '../services/category.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogConfig, MatTabsModule } from "@angular/material";
-import { EditcategoryComponent } from '../editcategory/editcategory.component';
-import { DeletecategoryComponent } from '../deletecategory/deletecategory.component';
-import { RegistertcategoryComponent } from '../registertcategory/registertcategory.component';
+import { EditcategoryComponent } from '../category/editcategory/editcategory.component';
+import { DeletecategoryComponent } from '../category/deletecategory/deletecategory.component';
+import { RegistertcategoryComponent } from '../category/registertcategory/registertcategory.component';
 
 @Component({
   selector: 'app-category',

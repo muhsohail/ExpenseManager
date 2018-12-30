@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { expense } from '../fetch-data/expense';
-import { ExpenseService } from '../expense-registeration/expense.service';
+import { ExpenseService } from '../services/expense.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';

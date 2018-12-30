@@ -5,4 +5,5 @@ export class UserViewModel {
     firstname: string;
     lastname: string; 
     role: string;     
+    percentage: number;
   }

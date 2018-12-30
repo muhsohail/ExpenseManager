@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit {
   users: User[];
   ELEMENT_DATA: UserViewModel[] = [];
   dataSource: any;
-  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'role', 'columndelete', 'columnedit'];
+  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'role', 'percentage', 'columndelete', 'columnedit'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -82,7 +82,8 @@ export class UsersComponent implements OnInit {
             'lastname': data[i].lastName,
             'role': data[i].role,
             'password': data[i].password,
-            'username': data[i].username
+            'username': data[i].username,
+            'percentage': data[i].hasOwnProperty("percentage") ? data[i].percentage : 0
           });
         }
 

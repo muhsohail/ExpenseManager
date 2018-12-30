@@ -92,7 +92,8 @@ export class AddUserComponent implements OnInit {
       lastName: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
-      role: ''
+      role: '',
+      percentage: ['', Validators.required]
     });
   }
 

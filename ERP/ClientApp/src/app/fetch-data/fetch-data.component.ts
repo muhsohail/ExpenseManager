@@ -70,7 +70,7 @@ export class FetchDataComponent {
   }
 
   editExpense(expense) {
-
+debugger
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -151,7 +151,7 @@ export class FetchDataComponent {
         for (var i = 0; i < data.length; i++) {         
 
           this.ELEMENT_DATA.push({
-            'id': data[i].id,
+            'id': data[i]._id,
             'amount': data[i].amount,
             'dateSpentString': new Date(data[i].dateSpent).toLocaleDateString(),
             'purpose': data[i].purpose,

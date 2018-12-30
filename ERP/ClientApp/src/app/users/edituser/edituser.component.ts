@@ -41,7 +41,8 @@ export class EdituserComponent implements OnInit {
       lastname: ['', Validators.required],
       username: '',
       password: '',
-      role: ''
+      role: '',
+      percentage: ['', Validators.required]
     });
   }
 

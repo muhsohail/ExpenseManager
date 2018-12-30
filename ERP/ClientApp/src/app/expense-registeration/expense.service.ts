@@ -59,15 +59,10 @@ export class ExpenseService {
   //}
 
   deleteExpense(id) {
-    console.log(`${this.uri}/delete/${id}`);
-
     const obj = {
 
     };
-    return this
-      .http
-      .post(`${this.uri}/delete/${id}`, obj)
-      .subscribe(res => console.log('Done'));
+    return this.http.post(`${this.uri}/delete/${id}`, obj);
   }
 
   bulkDeleteExpense(itemsCount) {

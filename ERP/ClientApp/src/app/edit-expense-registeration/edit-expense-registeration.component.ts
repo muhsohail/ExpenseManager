@@ -59,6 +59,7 @@ export class EditExpenseRegisterationComponent implements OnInit {
 
 
   updateExpense() {
+    debugger
     this.angForm.value.id = this.expenseId;
     this.expenseService.updateExpense(this.angForm.value)
       .pipe(first())

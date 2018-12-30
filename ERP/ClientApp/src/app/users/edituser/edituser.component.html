@@ -1,35 +1,39 @@
 <div class="card">
-    <div class="card-body">
-      <form [formGroup]="angForm" novalidate>
-        <h3>Edit User Entry</h3>
-  
-        <div class="form-group">
-          <mat-form-field class="example-full-width">
-            <input matInput formControlName="firstname" [(ngModel)]="user.firstname">
-          </mat-form-field>
-        </div>
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <h3>Edit User Entry</h3>
 
-        <div class="form-group">
-            <mat-form-field class="example-full-width">
-              <input matInput formControlName="lastname" [(ngModel)]="user.lastname">
-            </mat-form-field>
-          </div>
-  
-  
-        <div class="form-group">
-          <mat-form-field>
-            <mat-select name="role" formControlName="role" #role [(ngModel)]="user.role">
-              <mat-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-  
-  
-        <div class="btn-toolbar">
-          <button mat-button (click)="update()" [disabled]="loading" cdkFocusInitial>Update</button>
-          <button mat-button (click)="cancel()">Cancel</button>
-        </div>
-      </form>
-    </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="firstname" [(ngModel)]="user.firstname">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="lastname" [(ngModel)]="user.lastname">
+        </mat-form-field>
+      </div>
+
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select name="role" formControlName="role" #role [(ngModel)]="user.role">
+            <mat-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="percentage" [(ngModel)]="user.percentage">
+        </mat-form-field>
+      </div>
+
+      <div class="btn-toolbar">
+        <button mat-button (click)="update()" cdkFocusInitial>Update</button>
+        <button mat-button (click)="cancel()">Cancel</button>
+      </div>
+    </form>
   </div>
-  
+</div>

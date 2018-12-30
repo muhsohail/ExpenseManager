@@ -6,10 +6,12 @@ import { ExpenseService } from '../expense-registeration/expense.service';
 import { from } from 'rxjs';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
 import { Chart } from 'chart.js'
-
 import { MatDialog, MatDialogConfig, MatTabsModule } from "@angular/material";
-import { MatPaginator, MatSort, MatTableDataSource, MatSortModule  } from '@angular/material';
-
+import { MatPaginator, MatSort, MatTableDataSource, MatSortModule } from '@angular/material';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user';
+import {SettlementService} from '../services/settlement.service';
+import { Settlement } from '../models/settlement';
 
 @Component({
   selector: 'app-home',
@@ -27,22 +29,41 @@ export class HomeComponent implements OnInit {
   amountArray: number[] = [];
   spentBy: string;
 
-  spentByChart:any;
+  spentByChart: any;
   SpentByArray: string[] = [];
   totalAmoutnSpent: number;
   AmountDueByUserArray: AmountDueByUser[] = [];
-  displayedColumns: string[] = ['name', 'amountDue'];
+  displayedColumns: string[] = ['name', 'amountDue', 'returned','remaining'];
   ELEMENT_DATA: AmountDueByUser[] = [];
   dataSource: any;
+  users: User[] = [];
+  settlements: Settlement[];
+  settlmentItem: Settlement[] = [];
+  username: string;
+  returnedAmount: number;
+  settlementArrat: Settlement[];
 
   constructor(
     private http: HttpClient,
-    private expenseservice: ExpenseService) {
+    private expenseservice: ExpenseService,
+    private userService: UserService,
+    private settlementService: SettlementService) {
 
   }
 
   ngOnInit() {
     debugger
+
+    const settlementPromise = this.settlementService.getAll();
+    settlementPromise.subscribe((items: Settlement[]) => {
+      this.settlements = items;
+    });
+
+    const userProimise = this.userService.getAll();
+    userProimise.subscribe((items: User[]) => {
+      this.users = items;
+    });
+
     this.expenseservice
       .getExpenses()
       .subscribe((data: expense[]) => {
@@ -50,20 +71,33 @@ export class HomeComponent implements OnInit {
         this.expenseCount = data.length;
         this.totalAmoutnSpent = data.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0);
 
-        this.ELEMENT_DATA.push({'name': "User1", 'amountDue': this.totalAmoutnSpent * 0.55});
-        this.ELEMENT_DATA.push({'name': "User2", 'amountDue': this.totalAmoutnSpent * 0.35});
-        this.ELEMENT_DATA.push({'name': "User3", 'amountDue': this.totalAmoutnSpent * 0.15});
-        
+        for (var i = 0; i < this.users.length; i++) {
+          this.username = this.users[i].username;
+          this.settlementArrat = this.settlements.filter(element => element.by === this.username);
+          this.returnedAmount = this.settlementArrat.length > 0 ? this.settlementArrat.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0) : 0; 
+          this.ELEMENT_DATA.push(
+            {
+              'name': this.users[i].firstName,
+              'amountDue': Math.round(this.totalAmoutnSpent * this.users[i].percentage * 100) / 100,
+              'returned': this.returnedAmount,
+              'remaining':(Math.round(this.totalAmoutnSpent * this.users[i].percentage * 100) / 100) - (this.returnedAmount)
+            });
+        }
+
+       // this.ELEMENT_DATA.push({ 'name': "User1", 'amountDue': this.totalAmoutnSpent * 0.55 });
+       // this.ELEMENT_DATA.push({ 'name': "User2", 'amountDue': this.totalAmoutnSpent * 0.35 });
+        //this.ELEMENT_DATA.push({ 'name': "User3", 'amountDue': this.totalAmoutnSpent * 0.15 });
+
         this.dataSource = new MatTableDataSource<AmountDueByUser>(this.ELEMENT_DATA);
 
         this.prepareDashboardData();
         this.chartSetup();
-        
+
         this.prepareAmountSpentByUser();
         this.spentByChartSetup();
       });
   }
-  
+
   spentByChartSetup(): any {
     debugger
     this.spentByChart = new Chart('canvas1', {
@@ -178,7 +212,7 @@ export class HomeComponent implements OnInit {
   }
 
   SumByUserCreated(val: expense[]): any {
-  debugger
+    debugger
     this.spentBy = val[0].createdby.toString();
 
     var totalAmount = val.reduce(function (prev, cur) {
@@ -200,5 +234,7 @@ export interface DashboardData {
 export interface AmountDueByUser {
   name: String;
   amountDue: number;
+  returned: number;
+  remaining: number
 
 }

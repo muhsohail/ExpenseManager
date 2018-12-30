@@ -36,6 +36,10 @@
           <td mat-cell *matCellDef="let element"> {{element.role}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="percentage">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Percentage </th>
+            <td mat-cell *matCellDef="let element"> {{element.percentage}} </td>
+          </ng-container>
 
         <ng-container matColumnDef="columndelete">
           <th style="width:15%;" mat-header-cell *matHeaderCellDef> </th>

@@ -90,6 +90,7 @@ UserRoutes.route('/update/:id').post(function (req, res) {
             user.username = req.body.username;
             user.role = req.body.role;
             user.password = req.body.password;
+            user.percentage = req.body.percentage;
 
 
             user.save().then(user => {

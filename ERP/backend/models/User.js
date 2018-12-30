@@ -22,6 +22,9 @@ let User = new Schema(
         },
         role: {
             type: String
+        },
+        percentage:{
+            type: Number
         }
     },
     {

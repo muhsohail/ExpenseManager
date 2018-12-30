@@ -1,14 +1,14 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { expense } from '../fetch-data/expense';
-import { expenseViewModel } from '../fetch-data/expenseViewModel';
+import { expense } from '../expense/expense';
+import { expenseViewModel } from '../expense/expenseViewModel';
 
 
 import { ExpenseService } from '../services/expense.service';
 import { MatDialog, MatDialogConfig, MatTabsModule } from "@angular/material";
-import { ExpenseRegisterationComponent } from '../expense-registeration/expense-registeration.component';
-import { EditExpenseRegisterationComponent } from '../edit-expense-registeration/edit-expense-registeration.component';
-import { DeleteExpenseRegisterationComponent } from '../delete-expense-registeration/delete-expense-registeration.component';
+import { ExpenseRegisterationComponent } from '../expense/expense-registeration/expense-registeration.component';
+import { EditExpenseRegisterationComponent } from '../expense/edit-expense-registeration/edit-expense-registeration.component';
+import { DeleteExpenseRegisterationComponent } from '../expense/delete-expense-registeration/delete-expense-registeration.component';
 import { MatPaginator, MatSort, MatTableDataSource, MatSortModule  } from '@angular/material';
 import { User } from '../models/user';
 import { Time } from '@angular/common';
@@ -16,8 +16,8 @@ import { delay } from 'q';
 import { BulkDeleteComponent } from '../bulk-delete/bulk-delete.component';
 
 @Component({
-  selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  selector: 'app-expense',
+  templateUrl: './expense.component.html'
 })
 
 export class FetchDataComponent {

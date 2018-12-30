@@ -37,8 +37,8 @@
 
       <div class="btn-toolbar">
         <!--<button (click)="addExpense(amount.value, datespent.value, purpose.value, category.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Create</button>-->
-        <button [disabled]="loading" class="btn btn-primary">Add</button>
-        <button (click)="cancelAddExpense()" class="btn btn-primary">Cancel</button>
+        <button mat-button [disabled]="loading">Add</button>
+        <button mat-button (click)="cancelAddExpense()">Cancel</button>
       </div>
     </form>
   </div>

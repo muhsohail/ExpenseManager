@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { FetchDataComponent } from './expense/expense.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -53,9 +53,9 @@ import {
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { MillComponent } from './mill/mill.component';
-import { ExpenseRegisterationComponent } from './expense-registeration/expense-registeration.component';
-import { EditExpenseRegisterationComponent } from './edit-expense-registeration/edit-expense-registeration.component';
-import { DeleteExpenseRegisterationComponent } from './delete-expense-registeration/delete-expense-registeration.component';
+import { ExpenseRegisterationComponent } from './expense/expense-registeration/expense-registeration.component';
+import { EditExpenseRegisterationComponent } from './expense/edit-expense-registeration/edit-expense-registeration.component';
+import { DeleteExpenseRegisterationComponent } from './expense/delete-expense-registeration/delete-expense-registeration.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -128,7 +128,7 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
       //{ path: '', component: HomeComponent, pathMatch: 'full' },
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
+      { path: 'expense', component: FetchDataComponent, canActivate: [AuthGuard] },
       { path: 'my-dashboard', component: MyDashboardComponent },
       { path: 'mill', component: MillComponent },
       { path: 'login', component: LoginComponent },

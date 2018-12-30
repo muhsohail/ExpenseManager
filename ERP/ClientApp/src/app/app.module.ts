@@ -79,6 +79,10 @@ import { EditcategoryComponent } from './editcategory/editcategory.component';
 import { RegistertcategoryComponent } from './registertcategory/registertcategory.component';
 import { EdituserComponent } from './users/edituser/edituser.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
+import { SettlementComponent } from './settlement/settlement.component';
+import { AddSettlementComponent } from './settlement/add-settlement/add-settlement.component';
+import { EditSettlementComponent } from './settlement/edit-settlement/edit-settlement.component';
+import { DeleteSettlementComponent } from './settlement/delete-settlement/delete-settlement.component';
 
 
 //import { HomeComponent } from './home';/
@@ -107,7 +111,11 @@ import { AddUserComponent } from './users/add-user/add-user.component';
     EditcategoryComponent,
     RegistertcategoryComponent,
     EdituserComponent,
-    AddUserComponent
+    AddUserComponent,
+    SettlementComponent,
+    AddSettlementComponent,
+    EditSettlementComponent,
+    DeleteSettlementComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -118,16 +126,16 @@ import { AddUserComponent } from './users/add-user/add-user.component';
     FormsModule,
     RouterModule.forRoot([
       //{ path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+      { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard]},
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
       { path: 'my-dashboard', component: MyDashboardComponent },
       { path: 'mill', component: MillComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
-
+      { path: 'settlement', component: SettlementComponent, canActivate: [AuthGuard] },
 
     ]),
     ToastaModule.forRoot(),
@@ -150,7 +158,7 @@ import { AddUserComponent } from './users/add-user/add-user.component';
     ReactiveFormsModule,
     MatSelectModule,
     MatInputModule
-    
+
   ],
   providers: [
     AuthGuard,
@@ -165,16 +173,19 @@ import { AddUserComponent } from './users/add-user/add-user.component';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ExpenseRegisterationComponent, 
+    ExpenseRegisterationComponent,
     EditExpenseRegisterationComponent,
-    DeleteExpenseRegisterationComponent, 
-    DeleteUserComponent, 
+    DeleteExpenseRegisterationComponent,
+    DeleteUserComponent,
     BulkDeleteComponent,
     DeletecategoryComponent,
     EditcategoryComponent,
     RegistertcategoryComponent,
     EdituserComponent,
-    AddUserComponent
+    AddUserComponent,
+    AddSettlementComponent,
+    EditSettlementComponent,
+    DeleteSettlementComponent
   ]
 
 })

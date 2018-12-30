@@ -16,6 +16,7 @@ const adUnitRoutes = require('./routes/adexpense.route');
 const expenseRoutes = require('./routes/expense.route');
 const userRoutes = require('./routes/user.route');
 const categoryRoutes = require('./routes/category.route');
+const settlementRoutes = require('./routes/settlement.route');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -25,6 +26,7 @@ app.use('/adunits', adUnitRoutes);
 app.use('/expense', expenseRoutes);
 app.use('/user', userRoutes);
 app.use('/category', categoryRoutes);
+app.use('/settlement', settlementRoutes);
 
 
 const server = app.listen(port, function () {

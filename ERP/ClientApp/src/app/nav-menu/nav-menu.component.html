@@ -1,7 +1,8 @@
 <div class='main-nav'>
   <div class='navbar navbar-inverse'>
     <div class='navbar-header'>
-      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
+      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'
+        [attr.aria-expanded]='isExpanded' (click)='toggle()'>
         <span class='sr-only'>Toggle navigation</span>
         <span class='icon-bar'></span>
         <span class='icon-bar'></span>
@@ -27,7 +28,11 @@
             <span class='glyphicon glyphicon-th-list'></span> Expense Details
           </a>
         </li>
-
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/settlement"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Settlment
+          </a>
+        </li>
         <!--<li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/my-dashboard"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> Dashboard
@@ -60,10 +65,10 @@
         </li>
 
         <li [routerLinkActive]='["link-active"]'>
-            <a [routerLink]='["/login"]' (click)='collapse()'>
-              <span class='glyphicon glyphicon-th-list'></span> Logout
-            </a>
-          </li>
+          <a [routerLink]='["/login"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Logout
+          </a>
+        </li>
       </ul>
     </div>
   </div>

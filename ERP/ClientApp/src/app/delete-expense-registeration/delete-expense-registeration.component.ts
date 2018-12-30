@@ -4,6 +4,7 @@ import { ExpenseService } from '../expense-registeration/expense.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+
 @Component({
   selector: 'app-delete-expense-registeration',
   templateUrl: './delete-expense-registeration.component.html',
@@ -17,19 +18,11 @@ export class DeleteExpenseRegisterationComponent implements OnInit {
   diff: any;
   seconds: any;
 
-
   constructor(private route: ActivatedRoute,
     private router: Router,
     private expenseService: ExpenseService,
     private fb: FormBuilder, public dialogRef: MatDialogRef<DeleteExpenseRegisterationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  //ngOnInit() {
-  //  debugger
-  //  this.expenseService.editExpense(this.data.id).subscribe(res => {
-  //    this.objExpense = res;
-  //  });
-  //}
 
   ngOnInit() {
     debugger
@@ -38,11 +31,9 @@ export class DeleteExpenseRegisterationComponent implements OnInit {
 
   deleteExpense(id) {
     this.expenseService.deleteExpense(id);
-    //this.dialogRef.close();
   }
 
   cancelDeleteExpense() {
-
     this.dialogRef.close();
   }
 }

@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <h3>Edit Settlement Entry</h3>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="amount" [(ngModel)]="settlement.amount">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Settlement Date" formControlName="settlementdate" name="settlementdate"
+            #datespent [(ngModel)]="settlement.settlementdate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="btn-toolbar">
+        <button mat-button (click)="update()" [disabled]="loading" cdkFocusInitial>Update</button>
+        <button mat-button (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

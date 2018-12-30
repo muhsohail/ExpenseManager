@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-body">
+    <h3>Add Settlment Entry</h3>
+    <hr />
+    <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Amount" name="amount" formControlName="amount" #amount value="">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Date Settlement" formControlName="settlementdate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Who is doing this settlment?" value="" name="by" formControlName="by" #by>
+        </mat-form-field>
+      </div> -->
+
+      <div class="btn-toolbar">
+        <button mat-button class="btn btn-primary" cdkFocusInitial>Add</button>
+        <button mat-button (click)="cancel()" class="btn btn-primary">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

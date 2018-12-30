@@ -8,7 +8,7 @@ import { AlertService } from '../services/alert.service';
 import { Router } from '@angular/router';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData } from 'ngx-toasta';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import{CategoryService} from '../services/category.service';
+import { CategoryService } from '../services/category.service';
 import { categoryViewModel } from '../category/categoryViewModel';
 import { User } from '../models/user';
 
@@ -29,7 +29,7 @@ export class ExpenseRegisterationComponent implements OnInit {
   seconds: any;
   loading = false;
   submitted = false;
-  Categories:categoryViewModel[];
+  Categories: categoryViewModel[];
   loggedInUser: any;
 
   constructor(
@@ -55,7 +55,7 @@ export class ExpenseRegisterationComponent implements OnInit {
       title: "My title",
       msg: "The message",
       showClose: true,
-     // timeout: 5000,
+      // timeout: 5000,
       theme: 'default',
       onAdd: (toast: ToastData) => {
         console.log('Toast ' + toast.id + ' has been added!');
@@ -103,8 +103,8 @@ export class ExpenseRegisterationComponent implements OnInit {
       dateSpent: ['', Validators.required],
       purpose: ['', Validators.required],
       category: '',
-      createdby:'',
-      lastupdateddate:''
+      createdby: '',
+      lastupdateddate: ''
 
 
     });
@@ -123,8 +123,7 @@ export class ExpenseRegisterationComponent implements OnInit {
     if (this.angForm.invalid) {
       return;
     }
-    else
-    {
+    else {
       this.angForm.value.createdby = JSON.parse(this.loggedInUser).username;
       this.angForm.value.lastupdateddate = new Date();
 
@@ -141,7 +140,7 @@ export class ExpenseRegisterationComponent implements OnInit {
           this.showSuccess();
           //this.alertService.success('Registration successful', true);
           this.dialogRef.close();
-          
+
         },
         error => {
           this.alertService.error(error);
@@ -151,13 +150,13 @@ export class ExpenseRegisterationComponent implements OnInit {
 
   ngOnInit() {
     debugger
-    
+
     this.categoryService
-    .getCategories()
-    .subscribe((data: categoryViewModel[]) => {
-      this.Categories = data;
-      this.getCurrentLoggedInUser();
-    });
+      .getCategories()
+      .subscribe((data: categoryViewModel[]) => {
+        this.Categories = data;
+        this.getCurrentLoggedInUser();
+      });
   }
 
   getCurrentLoggedInUser() {

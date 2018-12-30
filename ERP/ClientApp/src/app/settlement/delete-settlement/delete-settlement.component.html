@@ -1,0 +1,12 @@
+<h3>Delete Settlement Entry</h3>
+<img src="../../assets/Delete.jpg" alt="Delete" width="50" height="30">
+<hr />
+
+<h4>Are you sure you?</h4>
+<p>
+  Remove settlement entry: {{settlement.amount}}
+</p>
+<div class="btn-toolbar">
+  <button mat-button (click)="delete(settlement.id)" cdkFocusInitial>Delete</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</div>

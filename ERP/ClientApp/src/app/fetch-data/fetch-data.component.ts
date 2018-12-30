@@ -15,18 +15,11 @@ import { Time } from '@angular/common';
 import { delay } from 'q';
 import { BulkDeleteComponent } from '../bulk-delete/bulk-delete.component';
 
-export interface UserData {
-
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
+
 export class FetchDataComponent {
   expenseList: expense[];  
   ELEMENT_DATA: expenseViewModel[] = [];
@@ -45,8 +38,6 @@ export class FetchDataComponent {
   seconds: any;
 
   expensesCount: Number = 0;
-
-  uri = 'http://localhost:4000/expense';
 
   //displayedColumns: string[];
   //dataSource: expense[];
@@ -78,47 +69,6 @@ export class FetchDataComponent {
     });
   }
 
-  // Bulk delete operation
-  openBulkDeleteDialog() {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
-    };
-
-    //this.dialog.open(ExpenseRegisterationComponent, dialogConfig);
-    const dialogRef = this.dialog.open(BulkDeleteComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.ngOnInit()
-    });
-  }
-
-
-  editDialog(id) {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    dialogConfig.data = {
-      id: id,
-      title: 'Edit Expense Entry'
-    };
-
-    //this.dialog.open(ExpenseRegisterationComponent, dialogConfig);
-    const dialogRef = this.dialog.open(EditExpenseRegisterationComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.ngOnInit()
-    });
-  }
   editExpense(expense) {
 
     const dialogConfig = new MatDialogConfig();
@@ -133,24 +83,6 @@ export class FetchDataComponent {
 
     //this.dialog.open(ExpenseRegisterationComponent, dialogConfig);
     const dialogRef = this.dialog.open(EditExpenseRegisterationComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.ngOnInit()
-    });
-  }
-  deleteDialog(id) {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-
-    dialogConfig.data = {
-      id: id,
-      title: 'Angular For Beginners'
-    };
-
-    //this.dialog.open(ExpenseRegisterationComponent, dialogConfig);
-    const dialogRef = this.dialog.open(DeleteExpenseRegisterationComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit()

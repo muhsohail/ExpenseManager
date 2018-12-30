@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './expense/expense.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatAutocompleteModule,
@@ -50,8 +49,6 @@ import {
   MatTreeModule,
   MatFormFieldModule,
 } from '@angular/material';
-import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
-import { MyTableComponent } from './my-table/my-table.component';
 import { MillComponent } from './mill/mill.component';
 import { ExpenseRegisterationComponent } from './expense/expense-registeration/expense-registeration.component';
 import { EditExpenseRegisterationComponent } from './expense/edit-expense-registeration/edit-expense-registeration.component';
@@ -94,9 +91,6 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    MyNavComponent,
-    MyDashboardComponent,
-    MyTableComponent,
     MillComponent,
     ExpenseRegisterationComponent,
     EditExpenseRegisterationComponent,
@@ -129,7 +123,6 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'counter', component: CounterComponent },
       { path: 'expense', component: FetchDataComponent, canActivate: [AuthGuard] },
-      { path: 'my-dashboard', component: MyDashboardComponent },
       { path: 'mill', component: MillComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },

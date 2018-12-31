@@ -7,9 +7,15 @@ import { categoryViewModel } from '../viewModels/categoryViewModel';
 })
 
 export class CategoryService {
+  
+  
   uri = 'http://localhost:4000/category';
   constructor(private http: HttpClient) { 
     
+  }
+
+  getAllNotCommonCategories(): any {
+    return this.http.get(`${this.uri}/getAllNotCommon`);
   }
 
   register(category: categoryViewModel) {

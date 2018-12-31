@@ -27,6 +27,19 @@ CategoryRoutes.route('/').get(function (req, res) {
         }
     });
 });
+
+CategoryRoutes.route('/getAllNotCommon').get(function (req, res) {
+    Category.find({isCommon: false}, function (err, Categories) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(Categories);
+        }
+    });
+});
+
+
 // Defined edit route
 CategoryRoutes.route('/edit/:id').get(function (req, res) {
     let id = req.params.id;

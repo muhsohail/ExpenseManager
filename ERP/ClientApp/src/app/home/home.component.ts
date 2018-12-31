@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { expense } from '../fetch-data/expense';
-import { expenseViewModel } from '../fetch-data/expenseViewModel';
+import { expense } from '../models/expense';
+import { expenseViewModel } from '../viewModels/expenseViewModel';
 import { ExpenseService } from '../services/expense.service';
 import { from } from 'rxjs';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
@@ -12,6 +12,9 @@ import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 import {SettlementService} from '../services/settlement.service';
 import { Settlement } from '../models/settlement';
+import { CategoryService } from '../services/category.service';
+import { categoryViewModel } from '../viewModels/categoryViewModel';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -42,17 +45,31 @@ export class HomeComponent implements OnInit {
   username: string;
   returnedAmount: number;
   settlementArrat: Settlement[];
+  noCommonCategories: categoryViewModel[];
+  notCommonCatNames: string[] = [];
+  filteredexpenses: expense[];
+  commonExpenses: expense[];
 
   constructor(
     private http: HttpClient,
     private expenseservice: ExpenseService,
     private userService: UserService,
+    private categoryService: CategoryService,
     private settlementService: SettlementService) {
 
   }
 
   ngOnInit() {
     debugger
+
+    const categoryPromise = this.categoryService.getAllNotCommonCategories();    
+    categoryPromise.subscribe((items: categoryViewModel[]) => {
+      for(var i=0; i< items.length; i++)
+      {
+        this.notCommonCatNames.push(items[i].code.toString())
+      }
+      //this.noCommonCategories = items;
+    });
 
     const settlementPromise = this.settlementService.getAll();
     settlementPromise.subscribe((items: Settlement[]) => {
@@ -64,12 +81,15 @@ export class HomeComponent implements OnInit {
       this.users = items;
     });
 
+
     this.expenseservice
       .getExpenses()
       .subscribe((data: expense[]) => {
         this.expenses = data;
+
+        this.commonExpenses = data.filter(element => this.notCommonCatNames.indexOf(element.category.toString()));
         this.expenseCount = data.length;
-        this.totalAmoutnSpent = data.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0);
+        this.totalAmoutnSpent = this.commonExpenses.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0);
 
         for (var i = 0; i < this.users.length; i++) {
           this.username = this.users[i].username;
@@ -185,9 +205,7 @@ export class HomeComponent implements OnInit {
     );
 
     const subscribe = example.subscribe(val => {
-      console.log(val);
       this.SumByCategory(val);
-
     });
 
   }
@@ -197,9 +215,6 @@ export class HomeComponent implements OnInit {
     var totalAmount = val.reduce(function (prev, cur) {
       return prev + parseInt(cur.amount.toString());
     }, 0);
-
-    console.log('Current Category:', this.currentCategory);
-    console.log('Total Amount:', totalAmount); // Total Messages: 461
 
     this.categoryArray.push(this.currentCategory.toString());
     this.amountArray.push(parseInt(totalAmount.toString()));

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExpenseService } from '../../services/expense.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { expense } from '../expense';
+import { expense } from '../../models/expense';
 import { first } from 'rxjs/operators';
 import { AlertService } from '../../services/alert.service';
 import { Router } from '@angular/router';

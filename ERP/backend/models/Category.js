@@ -12,6 +12,9 @@ let Category = new Schema(
         },
         description: {
             type: String
+        },
+        isCommon: {
+            type: Boolean
         }
     },
     {

@@ -3,7 +3,7 @@ import { categoryViewModel } from '../viewModels/categoryViewModel'
 import { MatSort, MatPaginator, MatTableDataSource, MatSortModule } from '@angular/material';
 import { CategoryService } from '../services/category.service';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog, MatDialogConfig, MatTabsModule } from "@angular/material";
+import { MatDialog, MatDialogConfig, MatTabsModule, MatCheckbox } from "@angular/material";
 import { EditcategoryComponent } from '../category/editcategory/editcategory.component';
 import { DeletecategoryComponent } from '../category/deletecategory/deletecategory.component';
 import { RegistertcategoryComponent } from '../category/registertcategory/registertcategory.component';
@@ -16,7 +16,7 @@ import { RegistertcategoryComponent } from '../category/registertcategory/regist
 export class CategoryComponent implements OnInit {
   ELEMENT_DATA: categoryViewModel[] = [];
   dataSource: any;
-  displayedColumns: string[] = ['id', 'code', 'description', 'columndelete', 'columnedit'];
+  displayedColumns: string[] = ['id', 'code', 'description', 'isCommon', 'columndelete', 'columnedit'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   categories: categoryViewModel[];
@@ -36,9 +36,10 @@ export class CategoryComponent implements OnInit {
         this.ELEMENT_DATA = [];
         for (var i = 0; i < data.length; i++) {
           this.ELEMENT_DATA.push({
-            'id': data[i].id,
+            'id': data[i]._id,
             'code': data[i].code,
             'description': data[i].description,
+            'isCommon' : data[i].hasOwnProperty("isCommon") ? data[i].isCommon : true
           });
         }
 

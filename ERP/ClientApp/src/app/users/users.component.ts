@@ -1,12 +1,6 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { expense } from '../fetch-data/expense';
-import { ExpenseService } from '../services/expense.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from "@angular/material";
-import { ExpenseRegisterationComponent } from '../expense-registeration/expense-registeration.component';
-import { EditExpenseRegisterationComponent } from '../edit-expense-registeration/edit-expense-registeration.component';
-import { DeleteExpenseRegisterationComponent } from '../delete-expense-registeration/delete-expense-registeration.component';
-import { MatPaginator, MatSort, MatTableDataSource, MatSortModule } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { DeleteUserComponent } from '../users/delete-user/delete-user.component';

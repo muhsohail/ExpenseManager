@@ -3,7 +3,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -13,6 +13,7 @@ import { first } from 'rxjs/operators';
 })
 export class RegistertcategoryComponent implements OnInit {
   angForm: FormGroup;
+  myModel = true;
 
   constructor(
     public toastr: ToastrManager,
@@ -52,7 +53,8 @@ export class RegistertcategoryComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       code: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      isCommon:''
     });
   }
 
@@ -66,6 +68,8 @@ export class RegistertcategoryComponent implements OnInit {
     }
     debugger
 
+    this.angForm.value.isCommon = this.myModel;
+
     this.categoryService.register(this.angForm.value)
       .pipe(first())
       .subscribe(
@@ -78,6 +82,7 @@ export class RegistertcategoryComponent implements OnInit {
           this.showError();
         });
   }
+
   ngOnInit() {
   }
 
@@ -85,4 +90,5 @@ export class RegistertcategoryComponent implements OnInit {
 export interface DialogData {
   code: string;
   description: string;
+  isCommon: Boolean
 }

@@ -150,7 +150,8 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
     MatFormFieldModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule
 
   ],
   providers: [

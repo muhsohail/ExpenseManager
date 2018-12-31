@@ -31,6 +31,7 @@ ExpenseRoutes.route('/').get(function (req, res) {
         }
     });
 });
+
 // Defined edit route
 ExpenseRoutes.route('/edit/:id').get(function (req, res) {
     let id = req.params.id;
@@ -97,7 +98,7 @@ ExpenseRoutes.route('/bulkdelete/:itemsCount').get(function (req, res) {
 
 
     //Expense.findById(id, function (err, expense) {
-        
+
     //});
 
 

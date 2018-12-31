@@ -15,6 +15,11 @@
         </mat-form-field>
       </div>
 
+      <mat-checkbox class="example-margin" [(ngModel)]="myModel" [ngModelOptions]="{standalone: true}">
+        <label>Common Category </label>
+      </mat-checkbox>
+
+
       <div class="btn-toolbar">
         <button [disabled]="loading" class="btn btn-primary">Add</button>
         <button (click)="cancel()" class="btn btn-primary">Cancel</button>

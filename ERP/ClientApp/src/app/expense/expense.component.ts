@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { expense } from '../expense/expense';
-import { expenseViewModel } from '../expense/expenseViewModel';
+import { expense } from '../models/expense';
+import { expenseViewModel } from '../viewModels/expenseViewModel';
 
 
 import { ExpenseService } from '../services/expense.service';

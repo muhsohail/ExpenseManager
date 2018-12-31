@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { first } from 'rxjs/operators';
 import { ExpenseService } from '../../services/expense.service';
-import { expense } from '../expense';
+import { expense } from '../../models/expense';
 import{CategoryService} from '../../services/category.service';
 import { categoryViewModel } from '../../viewModels/categoryViewModel';
 

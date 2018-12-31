@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { expense } from '../expense';
+import { expense } from '../../models/expense';
 import { ExpenseService } from '../../services/expense.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';

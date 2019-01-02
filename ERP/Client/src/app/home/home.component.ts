@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
       this.settlements = items;
     });
 
-    const userProimise = this.userService.getAll();
+    const userProimise = this.userService.getUsersForDashboard();
     userProimise.subscribe((items: User[]) => {
       this.users = items;
     });

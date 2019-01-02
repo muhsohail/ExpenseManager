@@ -19,10 +19,10 @@ UserRoutes.route('/register').post(function (req, res) {
 });
 
 UserRoutes.route('/authenticate').post(function (req, res) {
-    
+
     console.log("Inside auth");
-    User.findOne({ username: req.body.username}, function (err, user) {
-        if (!user) { 
+    User.findOne({ username: req.body.username }, function (err, user) {
+        if (!user) {
             return throwError({ error: { message: 'Username or password is incorrect' } });
             console.log("Inside auth error");
         }
@@ -38,26 +38,6 @@ UserRoutes.route('/authenticate').post(function (req, res) {
             res.json(user);
         }
     });
-
-    //let filteredUsers = User.filter(user => {
-    //    return user.username === request.body.username && user.password === request.body.password;
-    //});
-
-    //if (filteredUsers.length) {
-    //    // if login details are valid return 200 OK with user details and fake jwt token
-    //    let user = filteredUsers[0];
-    //    let body = {
-    //        id: user.id,
-    //        username: user.username,
-    //        firstName: user.firstName,
-    //        lastName: user.lastName,
-    //        token: 'fake-jwt-token'
-    //    };
-    //    return of(new HttpResponse({ status: 200, body: body }));
-    //} else {
-    //    // else return 400 bad request
-    //    return throwError({ error: { message: 'Username or password is incorrect' } });
-    //}
 });
 
 // Defined get data(index or listing) route
@@ -71,6 +51,18 @@ UserRoutes.route('/').get(function (req, res) {
         }
     });
 });
+
+UserRoutes.route('/GetUsersForDashboard').get(function (req, res) {
+    User.find({}, '-password', function (err, User) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json(User);
+        }
+    });
+});
+
 // Defined edit route
 UserRoutes.route('/edit/:id').get(function (req, res) {
     let id = req.params.id;

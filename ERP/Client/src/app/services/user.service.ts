@@ -16,6 +16,10 @@ export class UserService {
     return this.http.get<User[]>(`${this.uri}/`);
   }
 
+  getUsersForDashboard() {
+    return this.http.get<User[]>(`${this.uri}/GetUsersForDashboard`);
+  }
+
   getById(id: number) {
     return this.http.get(`${this.uri}/edit/` + id);
   }

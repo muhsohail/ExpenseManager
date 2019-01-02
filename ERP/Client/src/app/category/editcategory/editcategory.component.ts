@@ -15,6 +15,7 @@ export class EditcategoryComponent implements OnInit {
   category: categoryViewModel;
   angForm: FormGroup;
   categoryId: any;
+  myModel = true;
 
   constructor(    public toastr: ToastrManager,
     private categoryService: CategoryService,
@@ -25,14 +26,15 @@ export class EditcategoryComponent implements OnInit {
     }
     createForm() {
       this.angForm = this.fb.group({
-        id: '',
+        _id: '',
         code: ['', Validators.required],
-        description: ['', Validators.required]
+        description: ['', Validators.required],
+        isCommon:''
       });
     }
 
     showSuccess() {
-      this.toastr.successToastr('Express entry has been updated.', 'Success!');
+      this.toastr.successToastr('Category has been updated.', 'Success!');
     }
   
     showError() {
@@ -45,7 +47,9 @@ export class EditcategoryComponent implements OnInit {
 
     update() {
       debugger
-      this.angForm.value.id = this.categoryId;
+      this.angForm.value._id = this.categoryId;
+      this.angForm.value.isCommon = this.myModel;
+
       this.categoryService.updateCategory(this.angForm.value)
         .pipe(first())
         .subscribe(
@@ -64,7 +68,8 @@ export class EditcategoryComponent implements OnInit {
 
     ngOnInit() {
       this.category = this.data.item;
-      this.categoryId = this.data.item.id;
+      this.categoryId = this.data.item._id;
+      this.myModel = this.data.item.isCommon;
     }
 }
 export interface DialogData {

@@ -28,7 +28,7 @@ export class EditSettlementComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      id: '',
+      _id: '',
       amount: ['', Validators.required],
       settlementdate: ['', Validators.required],
       by: ['', Validators.required]
@@ -48,7 +48,7 @@ export class EditSettlementComponent implements OnInit {
   }
 
   update() {
-    this.angForm.value.id = this.settlementId;
+    this.angForm.value._id = this.settlementId;
     this.angForm.value.by = JSON.parse(this.loggedInUser).username;
 
     this.settlementService.update(this.angForm.value)
@@ -73,7 +73,7 @@ export class EditSettlementComponent implements OnInit {
     debugger
     this.settlement = this.data.item;
     this.settlement.settlementdate = new Date(this.data.item.settlementdatestring);
-    this.settlementId = this.data.item.id;
+    this.settlementId = this.data.item._id;
 
     this.getCurrentLoggedInUser();
   }

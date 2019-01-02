@@ -28,7 +28,7 @@ export class RegistertcategoryComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toastr.successToastr('Express entry has been added.', 'Success!');
+    this.toastr.successToastr('Category has been added.', 'Success!');
   }
 
   showError() {

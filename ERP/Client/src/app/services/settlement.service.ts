@@ -25,7 +25,7 @@ export class SettlementService {
   }
 
   update(settlement: Settlement) {
-    return this.http.post(`${this.uri}/update/${settlement.id}`, settlement);
+    return this.http.post(`${this.uri}/update/${settlement._id}`, settlement);
   }
 
 

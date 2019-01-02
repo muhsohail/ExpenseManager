@@ -31,7 +31,7 @@ export class CategoryService {
   }
 
   updateCategory(category: categoryViewModel, ) {
-    return this.http.post(`${this.uri}/update/${category.id}`, category);
+    return this.http.post(`${this.uri}/update/${category._id}`, category);
   }
 
 

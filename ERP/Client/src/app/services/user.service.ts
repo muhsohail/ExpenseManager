@@ -25,7 +25,7 @@ export class UserService {
   }
 
   update(user: User) {
-    return this.http.post(`${this.uri}/update/${user.id}`, user);
+    return this.http.post(`${this.uri}/update/${user._id}`, user);
   }
 
 
@@ -34,9 +34,7 @@ export class UserService {
 
     };
     //return this.http.post(`${this.uri}/delete/` + id);
-    return this
-      .http
-      .post(`${this.uri}/delete/${id}`, obj)
-      .subscribe(res => console.log('Done'));
+      return this.http.post(`${this.uri}/delete/${id}`, obj);
+    
   }
 }

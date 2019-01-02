@@ -1,5 +1,5 @@
 export class UserViewModel {
-    id: number;
+    _id: number;
     username: string;
     password:string;      
     firstname: string;

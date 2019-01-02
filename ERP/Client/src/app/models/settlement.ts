@@ -1,5 +1,5 @@
 export class Settlement {
-    id: number;
+    _id: number;
     amount: number;
     settlementdate: Date;
     by: string;

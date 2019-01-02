@@ -1,5 +1,5 @@
 export interface expense {
-  id: Number;
+  _id: Number;
   amount: String;
   dateSpent: Date;
   purpose: String;

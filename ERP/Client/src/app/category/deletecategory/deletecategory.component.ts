@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { ExpenseService } from '../../services/expense.service';
+import { expense } from '../../models/expense';
 
 @Component({
   selector: 'app-deletecategory',
@@ -16,40 +18,61 @@ export class DeletecategoryComponent implements OnInit {
 
   constructor(public toastr: ToastrManager,
     private route: ActivatedRoute,
+    private expenseService: ExpenseService,
     private router: Router,
     private categoryService: CategoryService,
     private fb: FormBuilder, public dialogRef: MatDialogRef<DeletecategoryComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    showSuccess() {
-      this.toastr.successToastr('Express entry has been deleted.', 'Success!');
-    }
-  
-    showError() {
-      this.toastr.errorToastr('This is error toast.', 'Oops!');
-    }
-  
-    showWarning() {
-      this.toastr.warningToastr('This is warning toast.', 'Alert!');
-    }
+  // showSuccess() {
+  //   this.toastr.successToastr('Category has been deleted.', 'Success!');
+  // }
+
+  showSuccess(message: string) {
+    this.toastr.successToastr(message, 'Success!');
+  }
+
+  showError(message: string) {
+    this.toastr.errorToastr(message, 'Whoops!');
+  }
+
+
+
+  showWarning() {
+    this.toastr.warningToastr('This is warning toast.', 'Alert!');
+  }
 
   ngOnInit() {
     this.category = this.data.item;
   }
 
-  
+
   delete(id) {
-    debugger
-    this.categoryService.deleteCategory(id)        
-    .pipe(first())
-    .subscribe(
-      data => {
-        this.showSuccess();
-        this.dialogRef.close();
-      },
-      error => {
-        this.showError();
+    this.expenseService.GetExpenseByCategory(this.category.code)
+      .subscribe((data: expense[]) => {
+        if (data.length == 0) {
+
+          this.categoryService.deleteCategory(id)
+            .pipe(first())
+            .subscribe(
+              data => {
+                this.showSuccess(data.toString());
+                this.dialogRef.close();
+              },
+              error => {
+                this.showError(error);
+              });
+
+        }
+        else {
+          this.showError("Unable to delete category. It is used in expense.");
+          this.dialogRef.close();
+        }
+
+
       });
+
+    debugger
   }
 
   cancel() {

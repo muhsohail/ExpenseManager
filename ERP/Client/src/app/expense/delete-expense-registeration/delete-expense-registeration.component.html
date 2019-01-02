@@ -7,6 +7,6 @@
   Remove expense entry: {{objExpense.amount}}
 </p>
 <div class="btn-toolbar">
-  <button mat-button (click)="deleteExpense(objExpense.id)" cdkFocusInitial>Delete</button>
+  <button mat-button (click)="deleteExpense(objExpense._id)" cdkFocusInitial>Delete</button>
   <button mat-button (click)="cancelDeleteExpense()">Cancel</button>
 </div>

@@ -9,18 +9,6 @@ import { expense } from '../models/expense';
 export class ExpenseService {
   uri = 'http://localhost:4000/expense';
   constructor(private http: HttpClient) { }
-  addExpense(amount, dateSpent, purpose, category) {
-    const obj = {
-      amount: amount,
-      dateSpent: dateSpent,
-      purpose: purpose,
-      category: category
-    };
-
-    this.http.post(`${this.uri}/add`, obj)
-      .subscribe(res => console.log('Done'));
-  }
-
 
   register(expense: expense) {
     return this.http.post(`${this.uri}/add`, expense);
@@ -38,29 +26,12 @@ export class ExpenseService {
       .get(`${this.uri}/edit/${id}`);
   }
 
-  updateExpense(expense: expense ) {
-    return this.http.post(`${this.uri}/update/${expense.id}`, expense);
-      //.subscribe(res => console.log('Done'));
+  updateExpense(expense: expense) {
+    return this.http.post(`${this.uri}/update/${expense._id}`, expense);
   }
-
-  //updateExpense(amount, datespent, purpose, category, id) {
-
-  //  const obj = {
-  //    amount: amount,
-  //    dateSpent: datespent,
-  //    purpose: purpose,
-  //    category: category,
-  //    id: id
-  //  };
-  //  this
-  //    .http
-  //    .post(`${this.uri}/update/${id}`, obj)
-  //    .subscribe(res => console.log('Done'));
-  //}
 
   deleteExpense(id) {
     const obj = {
-
     };
     return this.http.post(`${this.uri}/delete/${id}`, obj);
   }
@@ -69,4 +40,7 @@ export class ExpenseService {
     return this.http.get(`${this.uri}/bulkdelete/${itemsCount}`);
   }
 
+  GetExpenseByCategory(category) {
+    return this.http.get(`${this.uri}/getExpenseByCategory/${category}`);
+  }
 }

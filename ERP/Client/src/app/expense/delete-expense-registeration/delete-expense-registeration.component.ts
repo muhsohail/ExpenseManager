@@ -26,9 +26,9 @@ export class DeleteExpenseRegisterationComponent implements OnInit {
     private fb: FormBuilder, public dialogRef: MatDialogRef<DeleteExpenseRegisterationComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    
+
   showSuccess() {
-    this.toastr.successToastr('Express entry has been updated.', 'Success!');
+    this.toastr.successToastr('Express entry has been delegted.', 'Success!');
   }
 
   showError() {
@@ -55,7 +55,7 @@ export class DeleteExpenseRegisterationComponent implements OnInit {
       error => {
         this.showError();
       });
-;
+    ;
   }
 
   cancelDeleteExpense() {

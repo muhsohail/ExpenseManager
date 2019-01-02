@@ -87,7 +87,8 @@ export class HomeComponent implements OnInit {
       .subscribe((data: expense[]) => {
         this.expenses = data;
 
-        this.commonExpenses = data.filter(element => this.notCommonCatNames.indexOf(element.category.toString()));
+        this.commonExpenses = data.filter(element => element.category != undefined || element.category != "");
+        this.commonExpenses = this.commonExpenses.filter(element => this.notCommonCatNames.indexOf(element.category.toString()));
         this.expenseCount = data.length;
         this.totalAmoutnSpent = this.commonExpenses.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0);
 

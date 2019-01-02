@@ -21,7 +21,7 @@ export class EdituserComponent implements OnInit {
   roles = [{ 'id': 1, 'name': 'Admin' }, { 'id': 2, 'name': 'Editor' }, { 'id': 3, 'name': 'Viewer' }];
   password: any;
   username: any;
-  
+
   constructor(
     public toastr: ToastrManager,
     private userService: UserService,
@@ -36,7 +36,7 @@ export class EdituserComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      id: '',
+      _id: '',
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: '',
@@ -60,7 +60,7 @@ export class EdituserComponent implements OnInit {
 
   update() {
     debugger
-    this.angForm.value.id = this.userId;
+    this.angForm.value._id = this.userId;
     this.angForm.value.username = this.username;
     this.angForm.value.password = this.password;
 
@@ -85,19 +85,9 @@ export class EdituserComponent implements OnInit {
 
     debugger
     this.user = this.data.item;
-    this.userId = this.data.item.id;
+    this.userId = this.data.item._id;
     this.username = this.data.item.username;
     this.password = this.data.item.password;
-    
-    // this.categoryService
-    // .getCategories()
-    // .subscribe((data: categoryViewModel[]) => {
-    //   this.Categories = data;
 
-    //   this.user = this.data.item;
-    //   this.userId = this.data.item.id;
-    // });
   }
 }
-
-

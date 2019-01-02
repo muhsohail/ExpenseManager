@@ -4,6 +4,7 @@ const CategoryRoutes = express.Router();
 
 // Require Category model in our routes module
 let Category = require('../models/Category');
+let Expense = require('../models/Expense');
 
 // Defined store route
 CategoryRoutes.route('/add').post(function (req, res) {
@@ -29,7 +30,7 @@ CategoryRoutes.route('/').get(function (req, res) {
 });
 
 CategoryRoutes.route('/getAllNotCommon').get(function (req, res) {
-    Category.find({isCommon: false}, function (err, Categories) {
+    Category.find({ isCommon: false }, function (err, Categories) {
         if (err) {
             res.json(err);
         }
@@ -51,13 +52,14 @@ CategoryRoutes.route('/edit/:id').get(function (req, res) {
 CategoryRoutes.route('/update/:id').post(function (req, res) {
     Category.findById(req.params.id, function (err, category) {
         if (!category)
-            res.json('Could not load document');
+            res.json('Could not find existing document');
         else {
             category.code = req.body.code;
-            category.description = req.body.datdescriptioneSpent;
+            category.description = req.body.description;
+            category.isCommon = req.body.isCommon;
 
             category.save().then(category => {
-                res.json('Update complete');
+                res.json('Category has been successfully updated.');
             })
                 .catch(err => {
                     res.status(400).send("unable to update the database");
@@ -65,14 +67,17 @@ CategoryRoutes.route('/update/:id').post(function (req, res) {
         }
     });
 });
+
 // Delete
 CategoryRoutes.route('/delete/:id').post(function (req, res) {
+
     Category.findByIdAndRemove({ _id: req.params.id }, function (err, category) {
         if (err) {
             res.json(err);
         }
-        else res.json('Successfully removed');
+        else res.json('Category has been successfully removed');
     });
+
 });
 
 CategoryRoutes.route('/bulkdelete/:itemsCount').get(function (req, res) {

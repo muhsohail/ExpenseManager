@@ -1,5 +1,5 @@
 export interface categoryViewModel {
-    id: Number;
+    _id: Number;
     code: String;
     description: String;
     isCommon: Boolean;

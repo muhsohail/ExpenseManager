@@ -151,7 +151,7 @@ debugger
         for (var i = 0; i < data.length; i++) {         
 
           this.ELEMENT_DATA.push({
-            'id': data[i]._id,
+            '_id': data[i]._id,
             'amount': data[i].amount,
             'dateSpentString': new Date(data[i].dateSpent).toLocaleDateString(),
             'purpose': data[i].purpose,

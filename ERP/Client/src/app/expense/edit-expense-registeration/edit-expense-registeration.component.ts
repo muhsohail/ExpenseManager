@@ -14,6 +14,7 @@ import { categoryViewModel } from '../../viewModels/categoryViewModel';
   templateUrl: './edit-expense-registeration.component.html',
   styleUrls: ['./edit-expense-registeration.component.css']
 })
+
 export class EditExpenseRegisterationComponent implements OnInit {
   expenseList: expense;
   angForm: FormGroup;
@@ -37,7 +38,7 @@ export class EditExpenseRegisterationComponent implements OnInit {
 
   createForm() {
     this.angForm = this.fb.group({
-      id: '',
+      _id: '',
       amount: ['', Validators.required],
       dateSpent: ['', Validators.required],
       purpose: ['', Validators.required],
@@ -60,7 +61,7 @@ export class EditExpenseRegisterationComponent implements OnInit {
 
   updateExpense() {
     debugger
-    this.angForm.value.id = this.expenseId;
+    this.angForm.value._id = this.expenseId;
     this.expenseService.updateExpense(this.angForm.value)
       .pipe(first())
       .subscribe(
@@ -79,15 +80,6 @@ export class EditExpenseRegisterationComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  //ngOnInit() {
-  //  this.StartTime = new Date();
-  //  debugger
-  //  this.expenseService.editExpense(this.data.id).subscribe((res: expense) => {
-  //    this.expenseList = res;
-  //    this.expenseId = this.expenseList.id;
-  //  });
-  //}
-
   ngOnInit() {
     debugger
     this.categoryService
@@ -97,7 +89,7 @@ export class EditExpenseRegisterationComponent implements OnInit {
 
       this.expenseList = this.data.item;
       this.expenseList.dateSpent = new Date(this.data.item.dateSpentString);
-      this.expenseId = this.data.item.id;
+      this.expenseId = this.data.item._id;
     });
   }
 }

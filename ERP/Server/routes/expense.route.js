@@ -39,6 +39,7 @@ ExpenseRoutes.route('/edit/:id').get(function (req, res) {
         res.json(expense);
     });
 });
+
 //  Defined update route
 ExpenseRoutes.route('/update/:id').post(function (req, res) {
     Expense.findById(req.params.id, function (err, expense) {
@@ -68,6 +69,22 @@ ExpenseRoutes.route('/delete/:id').post(function (req, res) {
             res.json(err);
         }
         else res.json('Successfully removed');
+    });
+});
+
+ExpenseRoutes.route('/getExpenseByCategory/:category').get(function (req, res) {
+
+
+    console.log(req.params.category)
+    Expense.find({ category: req.params.category }, function (err, expense) {
+        if (err) {
+            console.log(err);
+            res.json(err);
+        }
+        console.log(expense)
+
+        res.json(expense);
+
     });
 });
 

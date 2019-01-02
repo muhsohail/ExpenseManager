@@ -1,5 +1,5 @@
 export interface expenseViewModel {
-  id: Number;
+  _id: Number;
   amount: String;
   dateSpentString: String;
   purpose: String;

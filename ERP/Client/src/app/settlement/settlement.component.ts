@@ -97,7 +97,7 @@ export class SettlementComponent implements OnInit {
         for (var i = 0; i < data.length; i++) {
 
           this.ELEMENT_DATA.push({
-            'id': data[i]._id,
+            '_id': data[i]._id,
             'amount': data[i].amount,
             'settlementdatestring': new Date(data[i].settlementdate).toLocaleDateString(),
             'by': data[i].by

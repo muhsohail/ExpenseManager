@@ -71,7 +71,7 @@ export class UsersComponent implements OnInit {
         for (var i = 0; i < data.length; i++) {
 
           this.ELEMENT_DATA.push({
-            'id': data[i]._id,
+            '_id': data[i]._id,
             'firstname': data[i].firstName,
             'lastname': data[i].lastName,
             'role': data[i].role,

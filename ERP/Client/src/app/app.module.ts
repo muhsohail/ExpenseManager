@@ -49,7 +49,6 @@ import {
   MatTreeModule,
   MatFormFieldModule,
 } from '@angular/material';
-import { MillComponent } from './mill/mill.component';
 import { ExpenseRegisterationComponent } from './expense/expense-registeration/expense-registeration.component';
 import { EditExpenseRegisterationComponent } from './expense/edit-expense-registeration/edit-expense-registeration.component';
 import { DeleteExpenseRegisterationComponent } from './expense/delete-expense-registeration/delete-expense-registeration.component';
@@ -57,7 +56,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { fakeBackendProvider } from '././helpers/fake-backend';
-import { AlertComponent } from './directives/alert.component';
 import { AuthGuard } from './guard/auth.guard';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
@@ -91,7 +89,6 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    MillComponent,
     ExpenseRegisterationComponent,
     EditExpenseRegisterationComponent,
     DeleteExpenseRegisterationComponent,
@@ -123,7 +120,6 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'counter', component: CounterComponent },
       { path: 'expense', component: FetchDataComponent, canActivate: [AuthGuard] },
-      { path: 'mill', component: MillComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },

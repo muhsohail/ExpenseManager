@@ -4,17 +4,17 @@ const express = require('express'),
     cors = require('cors'),
     mongoose = require('mongoose'),
     config = require('./config/ConnectionString')
-    //config = require('./config/DB');
 
 
 const app = express();
+//app.listen(80);
+//console.log("port" + 80);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.ConnectionString).then(
     () => { console.log('Database is connected') },
     err => { console.log('Can not connect to the database' + err) }
 );
-const adUnitRoutes = require('./routes/adexpense.route');
 const expenseRoutes = require('./routes/expense.route');
 const userRoutes = require('./routes/user.route');
 const categoryRoutes = require('./routes/category.route');
@@ -22,15 +22,15 @@ const settlementRoutes = require('./routes/settlement.route');
 
 app.use(bodyParser.json());
 app.use(cors());
-const port = process.env.PORT || 4000
-;
+const port = process.env.PORT || 4000;
 
-app.use('/adunits', adUnitRoutes);
 app.use('/expense', expenseRoutes);
 app.use('/user', userRoutes);
 app.use('/category', categoryRoutes);
 app.use('/settlement', settlementRoutes);
 
+app.use(express.static(__dirname + "/dist"));
+console.log(__dirname);
 
 const server = app.listen(port, function () {
     console.log('Hello, I am listening to the port ' + port);

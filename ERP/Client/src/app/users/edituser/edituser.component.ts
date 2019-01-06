@@ -37,8 +37,8 @@ export class EdituserComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       _id: '',
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       username: '',
       password: '',
       role: '',

@@ -3,12 +3,14 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     mongoose = require('mongoose'),
-    config = require('./config/DB');
+    config = require('./config/ConnectionString')
+    //config = require('./config/DB');
+
 
 const app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DB).then(
+mongoose.connect(config.ConnectionString).then(
     () => { console.log('Database is connected') },
     err => { console.log('Can not connect to the database' + err) }
 );
@@ -20,7 +22,8 @@ const settlementRoutes = require('./routes/settlement.route');
 
 app.use(bodyParser.json());
 app.use(cors());
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000
+;
 
 app.use('/adunits', adUnitRoutes);
 app.use('/expense', expenseRoutes);

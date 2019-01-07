@@ -4,7 +4,6 @@ import { ExpenseService } from '../../services/expense.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { expense } from '../../models/expense';
 import { first } from 'rxjs/operators';
-import { AlertService } from '../../services/alert.service';
 import { Router } from '@angular/router';
 import { ToastaService, ToastaConfig, ToastOptions, ToastData } from 'ngx-toasta';
 import { ToastrManager } from 'ng6-toastr-notifications';
@@ -36,7 +35,6 @@ export class ExpenseRegisterationComponent implements OnInit {
     public toastr: ToastrManager,
     private toastaService: ToastaService, private toastaConfig: ToastaConfig,
     private expenseService: ExpenseService,
-    private alertService: AlertService,
     private categoryService: CategoryService,
     private router: Router,
     private fb: FormBuilder,

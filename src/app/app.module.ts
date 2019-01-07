@@ -60,7 +60,6 @@ import { AuthGuard } from './guard/auth.guard';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 
-import { AlertService } from './services/alert.service';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { UsersComponent } from './users/users.component';
@@ -152,7 +151,6 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
   ],
   providers: [
     AuthGuard,
-    AlertService,
     AuthenticationService,
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

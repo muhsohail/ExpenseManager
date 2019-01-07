@@ -141,7 +141,6 @@ export class ExpenseRegisterationComponent implements OnInit {
 
         },
         error => {
-          this.alertService.error(error);
           this.loading = false;
         });
   }

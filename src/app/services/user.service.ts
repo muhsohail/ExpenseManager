@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { config } from 'process';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,11 @@ import { config } from 'process';
 
 export class UserService {
 
-  uri = 'http://localhost:4000/user';
-  constructor(private http: HttpClient) { }
+  uri:string;
+  constructor(private http: HttpClient, private router: Router) { 
+
+    this.uri=this.router.url + '/user';
+  }
 
   getAll() {
     return this.http.get<User[]>(`${this.uri}/`);

@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { expense } from '../models/expense';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ExpenseService {
-  uri = 'http://localhost:4000/expense';
-  constructor(private http: HttpClient) { }
+  uri:string;
+  constructor(private http: HttpClient, private router: Router) { 
+
+    this.uri=this.router.url + '/expense';
+  }
 
   register(expense: expense) {
     return this.http.post(`${this.uri}/add`, expense);

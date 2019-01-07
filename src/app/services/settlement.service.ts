@@ -2,15 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Settlement } from '../models/settlement';
 import { config } from 'process';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class SettlementService {
+export class SettlementService {  
 
-  uri = 'http://localhost:4000/settlement';
-  constructor(private http: HttpClient) { }
+  uri:string;
+
+  constructor(private http: HttpClient, private router: Router) { 
+
+    this.uri=this.router.url + '/settlement';
+  }
 
   getAll() {
     return this.http.get<Settlement[]>(`${this.uri}/`);

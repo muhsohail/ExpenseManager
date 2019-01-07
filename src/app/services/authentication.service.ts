@@ -4,13 +4,19 @@ import { map } from 'rxjs/operators';
 import { config } from 'process';
 import { Subject } from 'rxjs';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient) { }
-  uri = 'http://localhost:4000/user';
+  uri:string;
+  constructor(private http: HttpClient, private router: Router) { 
+
+    this.uri=this.router.url + '/user';
+  }
+
+
   currentUser$: Subject<User> = new Subject<User>();
   
   login(username: string, password: string) {

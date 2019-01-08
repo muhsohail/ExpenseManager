@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { categoryViewModel } from '../viewModels/categoryViewModel';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ export class CategoryService {
   
   
   uri:string;
-  constructor(private http: HttpClient, private router: Router, private window: Window) { 
+  constructor(private http: HttpClient, private location: Location) { 
 
-    this.uri = this.window.location.origin+ '/category';
+    this.uri = this.location.path+ '/category';
   }
 
   getAllNotCommonCategories(): any {

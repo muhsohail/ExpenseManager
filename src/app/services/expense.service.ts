@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { expense } from '../models/expense';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,9 @@ import { Router } from '@angular/router';
 
 export class ExpenseService {
   uri:string;
-  constructor(private http: HttpClient, private router: Router, private window: Window) { 
+  constructor(private http: HttpClient, private location: Location) { 
 
-    this.uri = this.window.location.origin+ '/expense';
+    this.uri = this.location.path+ '/expense';
   }
 
   register(expense: expense) {

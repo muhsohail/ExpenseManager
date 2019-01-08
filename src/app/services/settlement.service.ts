@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Settlement } from '../models/settlement';
 import { config } from 'process';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,13 @@ import { Router } from '@angular/router';
 export class SettlementService {  
 
   uri:string;
-  constructor(private http: HttpClient, private router: Router, private window: Window) { 
+  constructor(private http: HttpClient, private location: Location) { 
 
-    this.uri = this.window.location.origin+ '/settlement';
+    this.uri = this.location.path+ '/settlement';
   }
 
   getAll() {
     debugger
-    console.log(this.router.url);
     return this.http.get<Settlement[]>(`${this.uri}/`);
   }
 

@@ -5,24 +5,24 @@ import { config } from 'process';
 import { Subject } from 'rxjs';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   uri:string;
-  constructor(private http: HttpClient, private router: Router, private window: Window) { 
+  constructor(private http: HttpClient, private location: Location) { 
 
-    //this.uri=this.router.url + '/user';
-    this.uri = this.window.location.origin+ '/user';
+    this.uri = this.location.path+ '/user';
   }
 
 
   currentUser$: Subject<User> = new Subject<User>();
   
   login(username: string, password: string) {
-    console.log(this.uri = this.window.location.origin+ '/user');
-    this.uri = this.window.location.origin+ '/user';
+    console.log(this.uri = this.location.path+ '/user');
+    this.uri = this.location.path+ '/user';    
     
     return this.http.post<any>(`${this.uri}/authenticate`, { username: username, password: password })
       .pipe(map(user => {

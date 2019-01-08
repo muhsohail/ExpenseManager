@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { config } from 'process';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,9 @@ import { Router } from '@angular/router';
 export class UserService {
 
   uri:string;
-  constructor(private http: HttpClient, private router: Router, private window: Window) { 
+  constructor(private http: HttpClient, private location: Location) { 
 
-    this.uri = this.window.location.origin+ '/category';
+    this.uri = this.location.path+ '/user';
   }
 
   getAll() {

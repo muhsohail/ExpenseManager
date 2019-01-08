@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Settlement } from '../models/settlement';
 import { config } from 'process';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
+import {DOCUMENT} from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,8 @@ import {Location} from '@angular/common';
 export class SettlementService {  
 
   uri:string;
-  constructor(private http: HttpClient, private location: Location) { 
-
-    this.uri = this.location.path+ '/settlement';
+  constructor(private http: HttpClient, private location: Location, @Inject(DOCUMENT) private document) { 
+    this.uri = document.location.protocol +'//'+ document.location.hostname +':'+ document.location.port+ '/settlement';
   }
 
   getAll() {

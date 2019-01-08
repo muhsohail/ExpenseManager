@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { config } from 'process';
@@ -6,15 +6,16 @@ import { Subject } from 'rxjs';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import {Location} from '@angular/common';
+import {DOCUMENT} from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+ // uri:string;
   uri:string;
-  constructor(private http: HttpClient, private location: Location) { 
-
-    this.uri = this.location.path+ '/user';
+  constructor(private http: HttpClient, private location: Location, @Inject(DOCUMENT) private document) { 
+    this.uri = document.location.protocol +'//'+ document.location.hostname +':'+ document.location.port+ '/user';
   }
 
 
@@ -22,8 +23,8 @@ export class AuthenticationService {
   
   login(username: string, password: string) {
     console.log(this.uri = this.location.path+ '/user');
-    this.uri = this.location.path+ '/user';    
-    
+    this.uri = document.location.protocol +'//'+ document.location.hostname +':'+ document.location.port + '/user';    
+
     return this.http.post<any>(`${this.uri}/authenticate`, { username: username, password: password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response

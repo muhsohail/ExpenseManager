@@ -11,9 +11,9 @@ export class CategoryService {
   
   
   uri:string;
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router, private window: Window) { 
 
-    this.uri=this.router.url + '/category';
+    this.uri = this.window.location.origin+ '/category';
   }
 
   getAllNotCommonCategories(): any {

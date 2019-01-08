@@ -11,16 +11,19 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
   uri:string;
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router, private window: Window) { 
 
-    this.uri=this.router.url + '/user';
+    //this.uri=this.router.url + '/user';
+    this.uri = this.window.location.origin+ '/user';
   }
 
 
   currentUser$: Subject<User> = new Subject<User>();
   
   login(username: string, password: string) {
-
+    console.log(this.uri = this.window.location.origin+ '/user');
+    this.uri = this.window.location.origin+ '/user';
+    
     return this.http.post<any>(`${this.uri}/authenticate`, { username: username, password: password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response

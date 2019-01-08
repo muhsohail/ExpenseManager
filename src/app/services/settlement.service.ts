@@ -11,13 +11,14 @@ import { Router } from '@angular/router';
 export class SettlementService {  
 
   uri:string;
+  constructor(private http: HttpClient, private router: Router, private window: Window) { 
 
-  constructor(private http: HttpClient, private router: Router) { 
-
-    this.uri=this.router.url + '/settlement';
+    this.uri = this.window.location.origin+ '/settlement';
   }
 
   getAll() {
+    debugger
+    console.log(this.router.url);
     return this.http.get<Settlement[]>(`${this.uri}/`);
   }
 

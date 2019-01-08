@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 export class UserService {
 
   uri:string;
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router, private window: Window) { 
 
-    this.uri=this.router.url + '/user';
+    this.uri = this.window.location.origin+ '/category';
   }
 
   getAll() {

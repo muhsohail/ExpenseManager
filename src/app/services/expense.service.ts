@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
 
 export class ExpenseService {
   uri:string;
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router, private window: Window) { 
 
-    this.uri=this.router.url + '/expense';
+    this.uri = this.window.location.origin+ '/expense';
   }
 
   register(expense: expense) {

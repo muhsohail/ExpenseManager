@@ -77,6 +77,10 @@ import { SettlementComponent } from './settlement/settlement.component';
 import { AddSettlementComponent } from './settlement/add-settlement/add-settlement.component';
 import { EditSettlementComponent } from './settlement/edit-settlement/edit-settlement.component';
 import { DeleteSettlementComponent } from './settlement/delete-settlement/delete-settlement.component';
+import { StatusComponent } from './status/status.component';
+import { CreatestatusComponent } from './status/createstatus/createstatus.component';
+import { EditstatusComponent } from './status/editstatus/editstatus.component';
+import { DeletestatusComponent } from './status/deletestatus/deletestatus.component';
 
 
 //import { HomeComponent } from './home';/
@@ -105,7 +109,11 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
     SettlementComponent,
     AddSettlementComponent,
     EditSettlementComponent,
-    DeleteSettlementComponent
+    DeleteSettlementComponent,
+    StatusComponent,
+    CreatestatusComponent,
+    EditstatusComponent,
+    DeletestatusComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -123,6 +131,7 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
       { path: 'register', component: RegisterComponent },
       { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
       { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
+      { path: 'status', component: StatusComponent, canActivate: [AuthGuard] },
       { path: 'settlement', component: SettlementComponent, canActivate: [AuthGuard] },
 
     ]),
@@ -173,7 +182,10 @@ import { DeleteSettlementComponent } from './settlement/delete-settlement/delete
     AddUserComponent,
     AddSettlementComponent,
     EditSettlementComponent,
-    DeleteSettlementComponent
+    DeleteSettlementComponent,
+    CreatestatusComponent,
+    EditstatusComponent,
+    DeletestatusComponent
   ]
 
 })

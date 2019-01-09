@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-body">
+    <h3>Add Status Entry</h3>
+    <hr />
+    <form [formGroup]="angForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Code" name="code" formControlName="code" #code value="">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Description" value="" name="description" formControlName="description"
+            #description>
+        </mat-form-field>
+      </div>
+
+      <div class="btn-toolbar">
+        <button class="btn btn-primary">Add</button>
+        <button (click)="cancel()" class="btn btn-primary">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

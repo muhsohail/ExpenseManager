@@ -65,6 +65,12 @@
         </li>
 
         <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/status"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Manage Statuses
+          </a>
+        </li>
+
+        <li [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/login"]' (click)='collapse()'>
             <span class='glyphicon glyphicon-th-list'></span> Logout
           </a>

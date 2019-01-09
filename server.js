@@ -7,8 +7,6 @@ const express = require('express'),
 
 
 const app = express();
-//app.listen(80);
-//console.log("port" + 80);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.ConnectionString).then(
@@ -19,6 +17,7 @@ const expenseRoutes = require('./routes/expense.route');
 const userRoutes = require('./routes/user.route');
 const categoryRoutes = require('./routes/category.route');
 const settlementRoutes = require('./routes/settlement.route');
+const statusRoutes = require('./routes/status.route');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -28,6 +27,7 @@ app.use('/expense', expenseRoutes);
 app.use('/user', userRoutes);
 app.use('/category', categoryRoutes);
 app.use('/settlement', settlementRoutes);
+app.use('/status', statusRoutes);
 
 app.use(express.static(__dirname + "/dist"));
 console.log(__dirname);

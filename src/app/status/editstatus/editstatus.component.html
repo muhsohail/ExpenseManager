@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <h3>Edit Status Entry</h3>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="code" [(ngModel)]="status.code">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput name="description" formControlName="description" #description [(ngModel)]="status.description">
+        </mat-form-field>
+      </div>
+
+      <div class="btn-toolbar">
+        <button mat-button (click)="update()" cdkFocusInitial>Update</button>
+        <button mat-button (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

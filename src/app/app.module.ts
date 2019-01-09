@@ -81,6 +81,7 @@ import { StatusComponent } from './status/status.component';
 import { CreatestatusComponent } from './status/createstatus/createstatus.component';
 import { EditstatusComponent } from './status/editstatus/editstatus.component';
 import { DeletestatusComponent } from './status/deletestatus/deletestatus.component';
+import { ApproveExpenseComponent } from './expense/approve-expense/approve-expense.component';
 
 
 //import { HomeComponent } from './home';/
@@ -113,7 +114,8 @@ import { DeletestatusComponent } from './status/deletestatus/deletestatus.compon
     StatusComponent,
     CreatestatusComponent,
     EditstatusComponent,
-    DeletestatusComponent
+    DeletestatusComponent,
+    ApproveExpenseComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -185,7 +187,8 @@ import { DeletestatusComponent } from './status/deletestatus/deletestatus.compon
     DeleteSettlementComponent,
     CreatestatusComponent,
     EditstatusComponent,
-    DeletestatusComponent
+    DeletestatusComponent,
+    ApproveExpenseComponent
   ]
 
 })

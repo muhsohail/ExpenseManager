@@ -48,4 +48,10 @@ export class ExpenseService {
   GetExpenseByCategory(category) {
     return this.http.get(`${this.uri}/getExpenseByCategory/${category}`);
   }
+
+  approve(id) {
+    const obj = {
+    };
+    return this.http.post(`${this.uri}/approve/${id}`, obj);
+  }
 }

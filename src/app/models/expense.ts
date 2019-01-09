@@ -7,4 +7,5 @@ export interface expense {
   dateSpentString: String;
   createdby:String;
   lastupdateddate:Date;
+  status: String;
 }

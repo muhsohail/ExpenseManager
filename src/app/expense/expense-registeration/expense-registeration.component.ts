@@ -102,7 +102,8 @@ export class ExpenseRegisterationComponent implements OnInit {
       purpose: ['', Validators.required],
       category: '',
       createdby: '',
-      lastupdateddate: ''
+      lastupdateddate: '',
+      status:''
 
 
     });
@@ -124,6 +125,7 @@ export class ExpenseRegisterationComponent implements OnInit {
     else {
       this.angForm.value.createdby = JSON.parse(this.loggedInUser).username;
       this.angForm.value.lastupdateddate = new Date();
+      this.angForm.value.status = "Created";
 
     }
 

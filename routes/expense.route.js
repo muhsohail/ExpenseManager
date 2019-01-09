@@ -50,6 +50,7 @@ ExpenseRoutes.route('/update/:id').post(function (req, res) {
             expense.dateSpent = req.body.dateSpent;
             expense.purpose = req.body.purpose;
             expense.category = req.body.category;
+            expense.status = req.body.status;
 
             expense.save().then(expense => {
                 res.json('Update complete');
@@ -100,29 +101,23 @@ ExpenseRoutes.route('/bulkdelete/:itemsCount').get(function (req, res) {
         return res.json(expenses);
     });
 
+});
 
-    //var query = Model.find({}).skip(2).limit(5)
+ExpenseRoutes.route('/approve/:id').post(function (req, res) {
+    Expense.findById(req.params.id, function (err, expense) {
+        if (!expense)
+            console.log('Could not load find saved express entry');
+        else {
+            expense.status = "Approved";
 
-
-    //Expense.find()
-    //    .limit(itemCount)
-    //    .exec(function (err, expenses) {
-
-    //        //posts.map(function (doc) {
-    //        return res.json(expenses);
-    //        //});            
-    //    });
-
-
-    //Expense.findById(id, function (err, expense) {
-
-    //});
-
-
-    //Expense.deleteMany({
-    //    _id: { $in: [removeIdsArray]}}, function (err, response) {
-    //    console.log("hi" + err + response);
-    //})
+            expense.save().then(expense => {
+                res.json('Expense entry has been approved.');
+            })
+                .catch(err => {
+                    res.status(400).send("Unable to approve express entry.");
+                });
+        }
+    });
 });
 
 module.exports = ExpenseRoutes;

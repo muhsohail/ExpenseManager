@@ -1,0 +1,11 @@
+<h3>Approve Expense Entry</h3>
+<hr />
+
+<h4>Are you sure you?</h4>
+<p>
+  Approve expense entry: {{objExpense.amount}}
+</p>
+<div class="btn-toolbar">
+  <button mat-button (click)="approve(objExpense._id)" cdkFocusInitial>Approve</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</div>

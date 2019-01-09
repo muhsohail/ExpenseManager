@@ -6,4 +6,5 @@ export interface expenseViewModel {
   category: String;
   createdby: String;
   lastupdateddateString: String;
+  status: String;
 }

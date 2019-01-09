@@ -24,6 +24,9 @@ let Expense = new Schema(
         },
         lastupdateddate:{
             type: Date
+        },
+        status: {
+            type: String
         }
 
     },

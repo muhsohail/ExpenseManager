@@ -14,6 +14,7 @@ import { User } from '../models/user';
 import { Time } from '@angular/common';
 import { delay } from 'q';
 import { BulkDeleteComponent } from '../bulk-delete/bulk-delete.component';
+import { ApproveExpenseComponent } from '../expense/approve-expense/approve-expense.component';
 
 @Component({
   selector: 'app-expense',
@@ -41,7 +42,7 @@ export class FetchDataComponent {
 
   //displayedColumns: string[];
   //dataSource: expense[];
-  displayedColumns: string[] = ['id', 'amount', 'dateSpentString', 'purpose', 'category', 'createdby','lastupdateddateString', 'columndelete','columnedit'];
+  displayedColumns: string[] = ['id', 'amount', 'dateSpentString', 'purpose', 'category', 'createdby','lastupdateddateString', 'status', 'columndelete','columnedit', 'columnApprove'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -107,7 +108,23 @@ debugger
     });
   }
 
-
+  approve(expense) {
+        const dialogConfig = new MatDialogConfig();
+    
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = true;
+    
+        dialogConfig.data = {
+          item: expense,
+          title: 'Approve Expense Entry'
+        };
+    
+        const dialogRef = this.dialog.open(ApproveExpenseComponent, dialogConfig);
+    
+        dialogRef.afterClosed().subscribe(() => {
+          this.ngOnInit()
+        });
+      }
   getCurrentLoggedInUser() {
 
     if (localStorage.getItem('currentUser')) {
@@ -157,7 +174,8 @@ debugger
             'purpose': data[i].purpose,
             'category': data[i].category,
             'createdby':  data[i].hasOwnProperty("createdby") ? data[i].createdby : "admin",
-            'lastupdateddateString': data[i].hasOwnProperty("lastupdateddate") ? new Date(data[i].lastupdateddate).toLocaleDateString() : new Date().toLocaleDateString()
+            'lastupdateddateString': data[i].hasOwnProperty("lastupdateddate") ? new Date(data[i].lastupdateddate).toLocaleDateString() : new Date().toLocaleDateString(),
+            'status': data[i].hasOwnProperty("status") ? data[i].status : "Created"
           });
         }
 

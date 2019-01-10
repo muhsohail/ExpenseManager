@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
   notCommonCatNames: string[] = [];
   filteredexpenses: expense[];
   commonExpenses: expense[];
+  spentByAmountArray: number[] = [];
 
   constructor(
     private http: HttpClient,
@@ -89,6 +90,7 @@ export class HomeComponent implements OnInit {
 
         this.commonExpenses = data.filter(element => element.category != undefined || element.category != "");
         this.commonExpenses = this.commonExpenses.filter(element => element.status == 'Approved'); 
+        console.log(this.notCommonCatNames);
         this.commonExpenses = this.commonExpenses.filter(element => this.notCommonCatNames.indexOf(element.category.toString()));
         this.expenseCount = data.length;
         this.totalAmoutnSpent = this.commonExpenses.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0);
@@ -128,7 +130,7 @@ export class HomeComponent implements OnInit {
         labels: this.SpentByArray,
         datasets: [
           {
-            data: this.amountArray,
+            data: this.spentByAmountArray,
             borderColor: '#3cba9f',
             backgroundColor: '#3cbb9f',
             fill: false
@@ -153,8 +155,7 @@ export class HomeComponent implements OnInit {
   prepareAmountSpentByUser(): any {
     // Group by Spent By
     debugger
-    const filtered: expense[] = this.commonExpenses.filter(element => element.createdby !== undefined && element.createdby !== ""); //this.expenses.filter(element => element.createdby !== undefined && element.createdby !== "")
-
+    const filtered: expense[] = this.expenses.filter(element => element.createdby !== undefined && element.createdby !== "" && element.status =="Approved")
     const source = from(filtered);
     const spentByGroup = source.pipe(
       groupBy(expense => expense.createdby),
@@ -162,6 +163,8 @@ export class HomeComponent implements OnInit {
     );
 
     const getResultFromPromise = spentByGroup.subscribe(val => {
+      console.log(val);
+
       this.SumByUserCreated(val);
     });
   }
@@ -197,7 +200,7 @@ export class HomeComponent implements OnInit {
 
   prepareDashboardData() {
     debugger
-    const filteredExpenses: expense[] = this.commonExpenses.filter(element => element.category !== undefined); //this.expenses.filter(element => element.category !== undefined)
+    const filteredExpenses: expense[] = this.expenses.filter(element => element.category !== undefined && element.status =="Approved")
     const source = from(filteredExpenses);
     const example = source.pipe(
       groupBy(expense => expense.category),
@@ -238,6 +241,8 @@ export class HomeComponent implements OnInit {
 
     this.SpentByArray.push(this.spentBy.toString());
     this.amountArray.push(parseInt(totalAmount.toString()));
+    this.spentByAmountArray.push(parseInt(totalAmount.toString()));
+    console.log(this.spentByAmountArray);
   }
 }
 

@@ -22,7 +22,6 @@ export class AuthenticationService {
   currentUser$: Subject<User> = new Subject<User>();
   
   login(username: string, password: string) {
-    console.log(this.uri = this.location.path+ '/user');
     this.uri = document.location.protocol +'//'+ document.location.hostname +':'+ document.location.port + '/user';    
 
     return this.http.post<any>(`${this.uri}/authenticate`, { username: username, password: password })

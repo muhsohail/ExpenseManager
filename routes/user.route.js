@@ -19,15 +19,12 @@ UserRoutes.route('/register').post(function (req, res) {
 });
 
 UserRoutes.route('/authenticate').post(function (req, res) {
-
-    console.log("Inside auth");
-    User.findOne({ username: req.body.username }, function (err, user) {
+    User.findOne({ username: req.body.username, password: req.body.password }, function (err, user) {
         if (!user) {
-            return throwError({ error: { message: 'Username or password is incorrect' } });
-            console.log("Inside auth error");
+            console.log('Unable to authenticate.');
+            res.status(400).send("Unable to authenticate.");
         }
         else {
-            console.log("Inside auth not error");
             let body = {
                 id: user.id,
                 username: user.username,
@@ -77,8 +74,8 @@ UserRoutes.route('/update/:id').post(function (req, res) {
         if (!user)
             console.log('Could not load document');
         else {
-            user.firstName = req.body.firstname;
-            user.lastName = req.body.lastname;
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;
             user.username = req.body.username;
             user.role = req.body.role;
             user.password = req.body.password;

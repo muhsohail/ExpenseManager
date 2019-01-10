@@ -42,32 +42,6 @@ export class ExpenseRegisterationComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.createForm();
     this.toastaConfig.theme = 'material';
-    this.addToast();
-  }
-
-  addToast() {
-    // Just add default Toast with title only
-    this.toastaService.default('Hi there');
-    // Or create the instance of ToastOptions
-    var toastOptions: ToastOptions = {
-      title: "My title",
-      msg: "The message",
-      showClose: true,
-      // timeout: 5000,
-      theme: 'default',
-      onAdd: (toast: ToastData) => {
-        console.log('Toast ' + toast.id + ' has been added!');
-      },
-      onRemove: function (toast: ToastData) {
-        console.log('Toast ' + toast.id + ' has been removed!');
-      }
-    };
-    // Add see all possible types in one shot
-    this.toastaService.info(toastOptions);
-    this.toastaService.success(toastOptions);
-    this.toastaService.wait(toastOptions);
-    this.toastaService.error(toastOptions);
-    this.toastaService.warning(toastOptions);
   }
 
   showSuccess() {
@@ -136,7 +110,6 @@ export class ExpenseRegisterationComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.addToast();
           this.showSuccess();
           //this.alertService.success('Registration successful', true);
           this.dialogRef.close();

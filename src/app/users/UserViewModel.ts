@@ -2,8 +2,8 @@ export class UserViewModel {
     _id: number;
     username: string;
     password:string;      
-    firstname: string;
-    lastname: string; 
+    firstName: string;
+    lastName: string; 
     role: string;     
     percentage: number;
   }

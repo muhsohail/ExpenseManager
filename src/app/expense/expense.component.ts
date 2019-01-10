@@ -18,6 +18,7 @@ import { ApproveExpenseComponent } from '../expense/approve-expense/approve-expe
 
 @Component({
   selector: 'app-expense',
+  styleUrls: ['./expense.component.css'],
   templateUrl: './expense.component.html'
 })
 

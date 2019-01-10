@@ -72,8 +72,8 @@ export class UsersComponent implements OnInit {
 
           this.ELEMENT_DATA.push({
             '_id': data[i]._id,
-            'firstname': data[i].firstName,
-            'lastname': data[i].lastName,
+            'firstName': data[i].firstName,
+            'lastName': data[i].lastName,
             'role': data[i].role,
             'password': data[i].password,
             'username': data[i].username,

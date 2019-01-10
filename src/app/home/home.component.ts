@@ -90,7 +90,6 @@ export class HomeComponent implements OnInit {
 
         this.commonExpenses = data.filter(element => element.category != undefined || element.category != "");
         this.commonExpenses = this.commonExpenses.filter(element => element.status == 'Approved'); 
-        console.log(this.notCommonCatNames);
         this.commonExpenses = this.commonExpenses.filter(element => this.notCommonCatNames.indexOf(element.category.toString()));
         this.expenseCount = data.length;
         this.totalAmoutnSpent = this.commonExpenses.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0);
@@ -163,8 +162,6 @@ export class HomeComponent implements OnInit {
     );
 
     const getResultFromPromise = spentByGroup.subscribe(val => {
-      console.log(val);
-
       this.SumByUserCreated(val);
     });
   }
@@ -242,7 +239,6 @@ export class HomeComponent implements OnInit {
     this.SpentByArray.push(this.spentBy.toString());
     this.amountArray.push(parseInt(totalAmount.toString()));
     this.spentByAmountArray.push(parseInt(totalAmount.toString()));
-    console.log(this.spentByAmountArray);
   }
 }
 

@@ -8,10 +8,6 @@ let Expense = require('../models/Expense');
 // Defined store route
 ExpenseRoutes.route('/add').post(function (req, res) {
     let expense = new Expense(req.body);
-    console.log(expense);
-    console.log("expense.js called");
-
-    debugger
     expense.save()
         .then(game => {
             res.status(200).json({ 'expense': 'expense has been added successfully' + expense });
@@ -24,7 +20,7 @@ ExpenseRoutes.route('/add').post(function (req, res) {
 ExpenseRoutes.route('/').get(function (req, res) {
     Expense.find(function (err, Expenses) {
         if (err) {
-            console.log(err);
+            res.json(err);
         }
         else {
             res.json(Expenses);
@@ -63,10 +59,8 @@ ExpenseRoutes.route('/update/:id').post(function (req, res) {
 });
 // Delete
 ExpenseRoutes.route('/delete/:id').post(function (req, res) {
-    console.log('Called');
     Expense.findByIdAndRemove({ _id: req.params.id }, function (err, expense) {
         if (err) {
-            console.log(err);
             res.json(err);
         }
         else res.json('Successfully removed');
@@ -74,25 +68,16 @@ ExpenseRoutes.route('/delete/:id').post(function (req, res) {
 });
 
 ExpenseRoutes.route('/getExpenseByCategory/:category').get(function (req, res) {
-
-
-    console.log(req.params.category)
     Expense.find({ category: req.params.category }, function (err, expense) {
         if (err) {
-            console.log(err);
             res.json(err);
         }
-        console.log(expense)
-
         res.json(expense);
 
     });
 });
 
 ExpenseRoutes.route('/bulkdelete/:itemsCount').get(function (req, res) {
-    console.log("bulkdelete called ");
-    console.log(req.params.itemsCount);
-
     let itemCount = req.params.itemsCount;
     var removeIdsArray;
 
@@ -106,7 +91,7 @@ ExpenseRoutes.route('/bulkdelete/:itemsCount').get(function (req, res) {
 ExpenseRoutes.route('/approve/:id').post(function (req, res) {
     Expense.findById(req.params.id, function (err, expense) {
         if (!expense)
-            console.log('Could not load find saved express entry');
+            res.json(err);
         else {
             expense.status = "Approved";
 

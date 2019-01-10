@@ -30,7 +30,6 @@ app.use('/settlement', settlementRoutes);
 app.use('/status', statusRoutes);
 
 app.use(express.static(__dirname + "/dist"));
-console.log(__dirname);
 
 const server = app.listen(port, function () {
     console.log('Hello, I am listening to the port ' + port);

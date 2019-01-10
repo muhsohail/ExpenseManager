@@ -21,7 +21,6 @@ UserRoutes.route('/register').post(function (req, res) {
 UserRoutes.route('/authenticate').post(function (req, res) {
     User.findOne({ username: req.body.username, password: req.body.password }, function (err, user) {
         if (!user) {
-            console.log('Unable to authenticate.');
             res.status(400).send("Unable to authenticate.");
         }
         else {
@@ -41,7 +40,7 @@ UserRoutes.route('/authenticate').post(function (req, res) {
 UserRoutes.route('/').get(function (req, res) {
     User.find(function (err, User) {
         if (err) {
-            console.log(err);
+            res.json(err);
         }
         else {
             res.json(User);
@@ -52,7 +51,7 @@ UserRoutes.route('/').get(function (req, res) {
 UserRoutes.route('/GetUsersForDashboard').get(function (req, res) {
     User.find({}, '-password', function (err, User) {
         if (err) {
-            console.log(err);
+            res.json(err);
         }
         else {
             res.json(User);
@@ -94,10 +93,8 @@ UserRoutes.route('/update/:id').post(function (req, res) {
 
 // Delete
 UserRoutes.route('/delete/:id').post(function (req, res) {
-    console.log('Called');
     User.findByIdAndRemove({ _id: req.params.id }, function (err, user) {
         if (err) {
-            console.log(err);
             res.json(err);
         }
         else res.json('User has been successfully removed from the system.');

@@ -82,9 +82,6 @@ export class EdituserComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    debugger
-    console.log(this.data.item);
     this.user = this.data.item;
     this.userId = this.data.item._id;
     this.username = this.data.item.username;

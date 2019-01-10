@@ -8,10 +8,6 @@ let Settlement = require('../models/Settlement');
 // Defined store route
 SettlementRoutes.route('/add').post(function (req, res) {
     let settlement = new Settlement(req.body);
-    console.log(settlement);
-    console.log("settlement.js called");
-
-    debugger
     settlement.save()
         .then(game => {
             res.status(200).json({ 'settlement': 'settlement has been added successfully' + settlement });
@@ -24,7 +20,7 @@ SettlementRoutes.route('/add').post(function (req, res) {
 SettlementRoutes.route('/').get(function (req, res) {
     Settlement.find(function (err, Settlements) {
         if (err) {
-            console.log(err);
+            res.json(err);
         }
         else {
             res.json(Settlements);
@@ -59,10 +55,8 @@ SettlementRoutes.route('/update/:id').post(function (req, res) {
 });
 // Delete
 SettlementRoutes.route('/delete/:id').post(function (req, res) {
-    console.log('Called');
     Settlement.findByIdAndRemove({ _id: req.params.id }, function (err, settlement) {
         if (err) {
-            console.log(err);
             res.json(err);
         }
         else res.json('Successfully removed');
@@ -70,9 +64,6 @@ SettlementRoutes.route('/delete/:id').post(function (req, res) {
 });
 
 SettlementRoutes.route('/bulkdelete/:itemsCount').get(function (req, res) {
-    console.log("bulkdelete called ");
-    console.log(req.params.itemsCount);
-
     let itemCount = req.params.itemsCount;
     var removeIdsArray;
 

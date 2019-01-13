@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { expense } from '../models/expense';
 import { expenseViewModel } from '../viewModels/expenseViewModel';
 import { ExpenseService } from '../services/expense.service';
-import { from } from 'rxjs';
+import { from, forkJoin } from 'rxjs';
 import { groupBy, mergeMap, toArray } from 'rxjs/operators';
 import { Chart } from 'chart.js'
 import { MatDialog, MatDialogConfig, MatTabsModule } from "@angular/material";
 import { MatPaginator, MatSort, MatTableDataSource, MatSortModule } from '@angular/material';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
-import {SettlementService} from '../services/settlement.service';
+import { SettlementService } from '../services/settlement.service';
 import { Settlement } from '../models/settlement';
 import { CategoryService } from '../services/category.service';
 import { categoryViewModel } from '../viewModels/categoryViewModel';
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   SpentByArray: string[] = [];
   totalAmoutnSpent: number;
   AmountDueByUserArray: AmountDueByUser[] = [];
-  displayedColumns: string[] = ['name', 'amountDue', 'returned','remaining'];
+  displayedColumns: string[] = ['name', 'amountDue', 'returned', 'remaining'];
   ELEMENT_DATA: AmountDueByUser[] = [];
   dataSource: any;
   users: User[] = [];
@@ -61,64 +61,55 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger
 
-    const categoryPromise = this.categoryService.getAllNotCommonCategories();    
-    categoryPromise.subscribe((items: categoryViewModel[]) => {
-      for(var i=0; i< items.length; i++)
-      {
-        this.notCommonCatNames.push(items[i].code.toString())
+
+
+
+    let categoryPromise = this.categoryService.getAllNotCommonCategories();
+    let settlementPromise = this.settlementService.getAll();
+    let userProimise = this.userService.getUsersForDashboard();
+    let expensePromise = this.expenseservice.getExpenses();
+
+    forkJoin([categoryPromise, settlementPromise, userProimise, expensePromise]).subscribe(result => {
+
+      for (var i = 0; i < result[0].length; i++) {
+        this.notCommonCatNames.push(result[0][i].code.toString())
       }
-      //this.noCommonCategories = items;
+      console.log(this.notCommonCatNames);
+
+      this.settlements = result[1];
+      this.users = result[2];
+
+
+      this.expenses = result[3];
+
+      this.commonExpenses = result[3].filter(element => element.category != undefined || element.category != "");
+      this.commonExpenses = this.commonExpenses.filter(element => element.status == 'Approved');
+      this.commonExpenses = this.commonExpenses.filter(element => this.notCommonCatNames.indexOf(element.category.toString()));
+      this.expenseCount = result[3].length;
+      this.totalAmoutnSpent = this.commonExpenses.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0);
+
+      for (var i = 0; i < this.users.length; i++) {
+        this.username = this.users[i].username;
+        this.settlementArrat = this.settlements.filter(element => element.by === this.username);
+        this.returnedAmount = this.settlementArrat.length > 0 ? this.settlementArrat.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0) : 0;
+        this.ELEMENT_DATA.push(
+          {
+            'name': this.users[i].firstName,
+            'amountDue': Math.round(this.totalAmoutnSpent * this.users[i].percentage * 100) / 100,
+            'returned': this.returnedAmount,
+            'remaining': (Math.round(this.totalAmoutnSpent * this.users[i].percentage * 100) / 100) - (this.returnedAmount)
+          });
+      }
+
+      this.dataSource = new MatTableDataSource<AmountDueByUser>(this.ELEMENT_DATA);
+
+      this.prepareDashboardData();
+      this.chartSetup();
+
+      this.prepareAmountSpentByUser();
+      this.spentByChartSetup();
     });
-
-    const settlementPromise = this.settlementService.getAll();
-    settlementPromise.subscribe((items: Settlement[]) => {
-      this.settlements = items;
-    });
-
-    const userProimise = this.userService.getUsersForDashboard();
-    userProimise.subscribe((items: User[]) => {
-      this.users = items;
-    });
-
-
-    this.expenseservice
-      .getExpenses()
-      .subscribe((data: expense[]) => {
-        this.expenses = data;
-
-        this.commonExpenses = data.filter(element => element.category != undefined || element.category != "");
-        this.commonExpenses = this.commonExpenses.filter(element => element.status == 'Approved'); 
-        this.commonExpenses = this.commonExpenses.filter(element => this.notCommonCatNames.indexOf(element.category.toString()));
-        this.expenseCount = data.length;
-        this.totalAmoutnSpent = this.commonExpenses.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0);
-
-        for (var i = 0; i < this.users.length; i++) {
-          this.username = this.users[i].username;
-          this.settlementArrat = this.settlements.filter(element => element.by === this.username);
-          this.returnedAmount = this.settlementArrat.length > 0 ? this.settlementArrat.filter(item => item.amount).reduce((sum, current) => sum + parseInt(current.amount.toString()), 0) : 0; 
-          this.ELEMENT_DATA.push(
-            {
-              'name': this.users[i].firstName,
-              'amountDue': Math.round(this.totalAmoutnSpent * this.users[i].percentage * 100) / 100,
-              'returned': this.returnedAmount,  
-              'remaining':(Math.round(this.totalAmoutnSpent * this.users[i].percentage * 100) / 100) - (this.returnedAmount)
-            });
-        }
-
-       // this.ELEMENT_DATA.push({ 'name': "User1", 'amountDue': this.totalAmoutnSpent * 0.55 });
-       // this.ELEMENT_DATA.push({ 'name': "User2", 'amountDue': this.totalAmoutnSpent * 0.35 });
-        //this.ELEMENT_DATA.push({ 'name': "User3", 'amountDue': this.totalAmoutnSpent * 0.15 });
-
-        this.dataSource = new MatTableDataSource<AmountDueByUser>(this.ELEMENT_DATA);
-
-        this.prepareDashboardData();
-        this.chartSetup();
-
-        this.prepareAmountSpentByUser();
-        this.spentByChartSetup();
-      });
   }
 
   spentByChartSetup(): any {
@@ -154,7 +145,7 @@ export class HomeComponent implements OnInit {
   prepareAmountSpentByUser(): any {
     // Group by Spent By
     debugger
-    const filtered: expense[] = this.expenses.filter(element => element.createdby !== undefined && element.createdby !== "" && element.status =="Approved")
+    const filtered: expense[] = this.expenses.filter(element => element.createdby !== undefined && element.createdby !== "" && element.status == "Approved")
     const source = from(filtered);
     const spentByGroup = source.pipe(
       groupBy(expense => expense.createdby),
@@ -197,7 +188,7 @@ export class HomeComponent implements OnInit {
 
   prepareDashboardData() {
     debugger
-    const filteredExpenses: expense[] = this.expenses.filter(element => element.category !== undefined && element.status =="Approved")
+    const filteredExpenses: expense[] = this.expenses.filter(element => element.category !== undefined && element.status == "Approved")
     const source = from(filteredExpenses);
     const example = source.pipe(
       groupBy(expense => expense.category),
